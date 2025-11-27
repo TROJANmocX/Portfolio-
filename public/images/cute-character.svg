@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
+  <!-- Background Circle -->
+  <circle cx="250" cy="250" r="240" fill="#a8d5ff"/>
+  
+  <!-- Sparkles -->
+  <polygon points="100,100 110,85 120,100 105,110" fill="#ffffc0" transform="rotate(15, 100, 100)"/>
+  <polygon points="400,150 410,135 420,150 405,160" fill="#ffffc0" transform="rotate(45, 400, 150)"/>
+  <polygon points="150,400 160,385 170,400 155,410" fill="#ffffc0" transform="rotate(30, 150, 400)"/>
+  <polygon points="380,350 390,335 400,350 385,360" fill="#ffffc0" transform="rotate(60, 380, 350)"/>
+  <polygon points="120,250 130,235 140,250 125,260" fill="#ffffc0" transform="rotate(75, 120, 250)"/>
+  
+  <!-- Little Chicks -->
+  <g transform="translate(380, 200) scale(0.8) rotate(10)">
+    <ellipse cx="0" cy="0" rx="25" ry="20" fill="#fff8a0"/>
+    <circle cx="10" cy="-5" r="2" fill="#333"/>
+    <path d="M 15,-2 Q 20,0 15,2" fill="none" stroke="#333" stroke-width="1.5"/>
+    <path d="M -10,0 L -20,10 M -10,5 L -20,15" stroke="#333" stroke-width="1.5"/>
+  </g>
+  
+  <g transform="translate(420, 230) scale(0.8) rotate(-10)">
+    <ellipse cx="0" cy="0" rx="25" ry="20" fill="#fff8a0"/>
+    <circle cx="10" cy="-5" r="2" fill="#333"/>
+    <path d="M 15,-2 Q 20,0 15,2" fill="none" stroke="#333" stroke-width="1.5"/>
+    <path d="M -10,0 L -20,10 M -10,5 L -20,15" stroke="#333" stroke-width="1.5"/>
+  </g>
+  
+  <!-- Main Character Body -->
+  <circle cx="250" cy="250" r="100" fill="white"/>
+  
+  <!-- Ears -->
+  <ellipse cx="180" cy="170" rx="30" ry="60" fill="#333" transform="rotate(-20, 180, 170)"/>
+  <ellipse cx="320" cy="170" rx="30" ry="60" fill="#333" transform="rotate(20, 320, 170)"/>
+  
+  <!-- Face Features -->
+  <ellipse cx="230" cy="240" rx="8" ry="10" fill="#333"/>
+  <ellipse cx="270" cy="240" rx="8" ry="10" fill="#333"/>
+  <ellipse cx="250" cy="260" rx="6" ry="4" fill="#333"/>
+  
+  <!-- Sailor Outfit -->
+  <path d="M 180,290 Q 250,310 320,290 L 320,350 Q 250,370 180,350 Z" fill="#a8d5ff"/>
+  
+  <!-- Sailor Collar -->
+  <path d="M 200,290 L 180,260 L 250,280 L 320,260 L 300,290" fill="white"/>
+  <path d="M 200,290 L 180,260 L 250,280" fill="none" stroke="#a8d5ff" stroke-width="4"/>
+  <path d="M 300,290 L 320,260 L 250,280" fill="none" stroke="#a8d5ff" stroke-width="4"/>
+  
+  <!-- Sailor Hat -->
+  <path d="M 190,160 Q 250,140 310,160 L 300,140 Q 250,120 200,140 Z" fill="#a8d5ff"/>
+  <path d="M 190,160 Q 250,140 310,160" fill="none" stroke="white" stroke-width="4"/>
+  
+  <!-- Tie -->
+  <path d="M 250,280 L 240,310 L 250,320 L 260,310 L 250,280 Z" fill="#ff7c7c"/>
+  
+  <!-- Paws -->
+  <ellipse cx="200" cy="380" rx="25" ry="15" fill="white" transform="rotate(10, 200, 380)"/>
+  <ellipse cx="300" cy="380" rx="25" ry="15" fill="white" transform="rotate(-10, 300, 380)"/>
+  
+  <!-- Paw Dots -->
+  <circle cx="190" cy="375" r="5" fill="#333"/>
+  <circle cx="210" cy="375" r="5" fill="#333"/>
+  <circle cx="200" cy="385" r="5" fill="#333"/>
+  
+  <circle cx="290" cy="375" r="5" fill="#333"/>
+  <circle cx="310" cy="375" r="5" fill="#333"/>
+  <circle cx="300" cy="385" r="5" fill="#333"/>
+</svg>

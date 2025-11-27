@@ -1,0 +1,313 @@
+%PDF-1.4
+1 0 obj
+<<
+/Title (Arish - Resume)
+/Author (Arish)
+/Subject (Resume)
+/Producer (StackBlitz PDF Generator)
+/CreationDate (D:20230523000000+00'00')
+>>
+endobj
+2 0 obj
+<<
+/Type /Catalog
+/Pages 3 0 R
+>>
+endobj
+3 0 obj
+<<
+/Type /Pages
+/Count 1
+/Kids [4 0 R]
+>>
+endobj
+4 0 obj
+<<
+/Type /Page
+/Parent 3 0 R
+/Resources <<
+/Font <<
+/F1 5 0 R
+/F2 6 0 R
+/F3 7 0 R
+>>
+/ProcSet [/PDF /Text /ImageB /ImageC /ImageI]
+>>
+/MediaBox [0 0 612 792]
+/Contents 8 0 R
+>>
+endobj
+5 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/BaseFont /Helvetica
+/Encoding /WinAnsiEncoding
+>>
+endobj
+6 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/BaseFont /Helvetica-Bold
+/Encoding /WinAnsiEncoding
+>>
+endobj
+7 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/BaseFont /Helvetica-Oblique
+/Encoding /WinAnsiEncoding
+>>
+endobj
+8 0 obj
+<<
+/Length 2244
+>>
+stream
+1 0 0 1 50 700 cm
+BT
+/F2 24 Tf
+0 0 0 rg
+0 0 Td
+(Arish) Tj
+ET
+
+BT
+/F3 12 Tf
+0 0 0 rg
+0 -20 Td
+(Computer Science Student & Developer) Tj
+ET
+
+BT
+/F1 10 Tf
+0 0 0 rg
+350 0 Td
+(Email: arish@example.com) Tj
+0 -15 Td
+(Phone: \(555\) 123-4567) Tj
+0 -15 Td
+(GitHub: github.com/arishcs) Tj
+0 -15 Td
+(LinkedIn: linkedin.com/in/arishcs) Tj
+ET
+
+BT
+/F2 14 Tf
+0 0 0 rg
+-350 -60 Td
+(EDUCATION) Tj
+ET
+
+0.5 w
+0 -65 m
+510 -65 l
+S
+
+BT
+/F2 12 Tf
+0 0 0 rg
+0 -85 Td
+(Bachelor of Science in Computer Science) Tj
+ET
+
+BT
+/F3 12 Tf
+0 0 0 rg
+0 -100 Td
+(Tech University) Tj
+ET
+
+BT
+/F1 11 Tf
+0 0 0 rg
+0 -115 Td
+(2021 - Present) Tj
+ET
+
+BT
+/F1 11 Tf
+0 0 0 rg
+0 -130 Td
+(- Current GPA: 3.8/4.0) Tj
+0 -15 Td
+(- Coursework: Data Structures, Algorithms, Database Systems, Machine Learning) Tj
+0 -15 Td
+(- Relevant Projects: EcoTrack \(Carbon Footprint Tracker\), AlgoViz \(Algorithm Visualizer\)) Tj
+ET
+
+BT
+/F2 12 Tf
+0 0 0 rg
+0 -175 Td
+(High School Diploma) Tj
+ET
+
+BT
+/F3 12 Tf
+0 0 0 rg
+0 -190 Td
+(Science Academy) Tj
+ET
+
+BT
+/F1 11 Tf
+0 0 0 rg
+0 -205 Td
+(2017 - 2021) Tj
+ET
+
+BT
+/F1 11 Tf
+0 0 0 rg
+0 -220 Td
+(- Graduated with honors) Tj
+0 -15 Td
+(- President of the Computer Science Club) Tj
+ET
+
+BT
+/F2 14 Tf
+0 0 0 rg
+0 -260 Td
+(EXPERIENCE) Tj
+ET
+
+0.5 w
+0 -265 m
+510 -265 l
+S
+
+BT
+/F2 12 Tf
+0 0 0 rg
+0 -285 Td
+(Software Development Intern) Tj
+ET
+
+BT
+/F3 12 Tf
+0 0 0 rg
+0 -300 Td
+(InnovateNow Startup) Tj
+ET
+
+BT
+/F1 11 Tf
+0 0 0 rg
+0 -315 Td
+(Summer 2023) Tj
+ET
+
+BT
+/F1 11 Tf
+0 0 0 rg
+0 -330 Td
+(- Developed and maintained web applications using React and Node.js) Tj
+0 -15 Td
+(- Implemented new features and fixed bugs in the company's main product) Tj
+0 -15 Td
+(- Collaborated with the design team to improve user experience) Tj
+ET
+
+BT
+/F2 12 Tf
+0 0 0 rg
+0 -375 Td
+(Teaching Assistant) Tj
+ET
+
+BT
+/F3 12 Tf
+0 0 0 rg
+0 -390 Td
+(Tech University) Tj
+ET
+
+BT
+/F1 11 Tf
+0 0 0 rg
+0 -405 Td
+(Spring 2023) Tj
+ET
+
+BT
+/F1 11 Tf
+0 0 0 rg
+0 -420 Td
+(- Assisted professor in teaching intro to programming) Tj
+0 -15 Td
+(- Held office hours, graded assignments, and led lab sessions) Tj
+ET
+
+BT
+/F2 14 Tf
+0 0 0 rg
+0 -460 Td
+(SKILLS) Tj
+ET
+
+0.5 w
+0 -465 m
+510 -465 l
+S
+
+BT
+/F1 11 Tf
+0 0 0 rg
+0 -485 Td
+(- Programming Languages: Python, Java, JavaScript, TypeScript, SQL) Tj
+0 -15 Td
+(- Web Development: React, Node.js, HTML/CSS, Tailwind CSS) Tj
+0 -15 Td
+(- Tools & Technologies: Git, MongoDB, Docker, AWS, Firebase) Tj
+0 -15 Td
+(- Soft Skills: Problem Solving, Team Collaboration, Technical Writing) Tj
+ET
+
+BT
+/F2 14 Tf
+0 0 0 rg
+0 -545 Td
+(AWARDS & ACHIEVEMENTS) Tj
+ET
+
+0.5 w
+0 -550 m
+510 -550 l
+S
+
+BT
+/F1 11 Tf
+0 0 0 rg
+0 -570 Td
+(- First Place, DevFest 2023 Hackathon) Tj
+0 -15 Td
+(- Dean's List, Tech University \(2021 - Present\)) Tj
+0 -15 Td
+(- Eagle Scout Award) Tj
+ET
+endstream
+endobj
+xref
+0 9
+0000000000 65535 f 
+0000000009 00000 n 
+0000000146 00000 n 
+0000000195 00000 n 
+0000000252 00000 n 
+0000000434 00000 n 
+0000000531 00000 n 
+0000000633 00000 n 
+0000000738 00000 n 
+trailer
+<<
+/Size 9
+/Root 2 0 R
+/Info 1 0 R
+>>
+startxref
+3034
+%%EOF
