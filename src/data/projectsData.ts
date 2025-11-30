@@ -2,6 +2,8 @@ export interface Project {
   id: number;
   title: string;
   description: string;
+  problem?: string;
+  solution?: string;
   technologies: string[];
   imageUrl: string;
   githubUrl: string;
@@ -15,6 +17,8 @@ export const projects: Project[] = [
     id: 1,
     title: 'UpSkilled',
     description: 'Your personalized AI mentor to bridge the gap between where you are and where you want to be in tech.',
+    problem: 'Self-taught developers often feel lost in a sea of tutorials without a clear, personalized roadmap.',
+    solution: 'An AI-driven platform that generates custom learning paths, tracks progress, and provides real-time mentorship.',
     technologies: ['AI', 'Education', 'Mentorship'],
     imageUrl: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2070&auto=format&fit=crop',
     githubUrl: 'https://github.com/TROJANmocX/UpSkilled',
@@ -25,6 +29,8 @@ export const projects: Project[] = [
     id: 2,
     title: 'Project-MIA',
     description: 'MIA – Your moody AI assistant that obeys… sometimes. Talks back, reads your gestures, and might plot your downfall.',
+    problem: 'Standard voice assistants are boring, robotic, and lack genuine personality or "human" quirks.',
+    solution: 'A chaotic, gesture-controlled AI with a distinct personality that makes interaction fun and unpredictable.',
     technologies: ['AI', 'Assistant', 'Python'],
     imageUrl: 'https://images.unsplash.com/photo-1531746790731-6c087fecd65a?q=80&w=2006&auto=format&fit=crop',
     githubUrl: 'https://github.com/TROJANmocX/Project-MIA',
@@ -35,6 +41,8 @@ export const projects: Project[] = [
     id: 3,
     title: 'MedGuardian',
     description: 'MedGuardian is your slightly paranoid but very clever AI buddy that guesses what disease you might have without convincing you you\'re terminal.',
+    problem: 'People often panic-search symptoms online, leading to misinformation and unnecessary anxiety.',
+    solution: 'A calm, rational AI diagnostic tool that provides preliminary insights based on medical data, not fear-mongering.',
     technologies: ['Healthcare', 'AI', 'Prediction'],
     imageUrl: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2070&auto=format&fit=crop',
     githubUrl: 'https://github.com/TROJANmocX/MedGuardian',
@@ -45,6 +53,8 @@ export const projects: Project[] = [
     id: 4,
     title: 'Dogecoin-Dashboard',
     description: 'Predict Dogecoin\'s price with modern web tech and meme magic? Built a dashboard using Next.js, React, TypeScript, Tailwind CSS, and FastAPI.',
+    problem: 'Crypto tracking tools are often overly complex and lack the "fun" factor of meme coins.',
+    solution: 'A streamlined, meme-friendly dashboard that combines real-time data with community sentiment analysis.',
     technologies: ['Next.js', 'React', 'FastAPI', 'Finance'],
     imageUrl: '/dogecoin-dashboard.png',
     githubUrl: 'https://github.com/TROJANmocX/Dogecoin-Dashboard',
@@ -55,6 +65,8 @@ export const projects: Project[] = [
     id: 5,
     title: 'VibeCraft-AI',
     description: 'Emotion-powered moodboard generator that turns your feelings into visual art, music, quotes, and journal prompts.',
+    problem: 'It\'s hard to visualize or articulate complex emotional states using just words.',
+    solution: 'An AI that translates raw emotions into curated visual and auditory experiences for better self-expression.',
     technologies: ['React', 'OpenAI', 'Gemini', 'Art'],
     imageUrl: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?q=80&w=2071&auto=format&fit=crop',
     githubUrl: 'https://github.com/TROJANmocX/VibeCraft-AI',

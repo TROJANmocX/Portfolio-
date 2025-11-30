@@ -1,22 +1,26 @@
-import React from 'react';
-import { Briefcase, GraduationCap, Calendar, Download } from 'lucide-react';
+import React, { useState } from 'react';
+import { Briefcase, GraduationCap, Download, ChevronRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Resume: React.FC = () => {
+  const [isDownloading, setIsDownloading] = useState(false);
+
   const education = [
     {
       id: 1,
       degree: "B.Tech in Computer Science",
-      institution: "SRM Institute of Science and Technology, Delhi NCR Campus",
+      institution: "SRM Institute of Science and Technology",
       period: "2023 – 2027",
-      description: "Focused on software engineering, problem-solving, modern web technologies, and building scalable applications."
+      status: "IN PROGRESS",
+      description: "Specializing in Software Engineering, AI, and Distributed Systems. Maintaining a focus on practical application of theory."
     },
     {
       id: 2,
       degree: "Higher Secondary Education",
       institution: "Escorts World School",
       period: "2021 – 2023",
-      description: "Specialized in Physics, Chemistry, and Mathematics."
+      status: "COMPLETED",
+      description: "Foundation in Physics, Chemistry, and Mathematics. Graduated with distinction."
     }
   ];
 
@@ -26,161 +30,166 @@ const Resume: React.FC = () => {
       role: "Freelance Web Developer",
       company: "Self-Employed",
       period: "2023 – Present",
+      status: "ACTIVE",
       description: [
-        "Built custom websites and dashboards using React, Next.js, and Tailwind CSS.",
-        "Focused on clean performance, responsive design, and modern UI/UX.",
-        "Delivered full-stack features using Python, APIs, and automation tools.",
-        "Worked with clients to ship polished, reliable solutions."
+        "Architecting custom web solutions using the React ecosystem.",
+        "Optimizing performance metrics and ensuring 100% responsive layouts.",
+        "Deploying full-stack applications with automated CI/CD pipelines."
       ]
     },
     {
       id: 2,
-      role: "AI & Tooling Projects (Independent)",
-      company: "Personal Projects",
+      role: "AI & Tooling Developer",
+      company: "Independent Research",
       period: "2023 – Present",
+      status: "R&D",
       description: [
-        "Developed AI-powered tools including gesture-controlled systems, a voice-activated desktop assistant (MIA), and data dashboards.",
-        "Integrated OpenCV, MediaPipe, Python automation, and FastAPI to create experimental interfaces.",
-        "Designed full product flows: UI, backend, ML integration, and deployment."
+        "Developing experimental AI interfaces using OpenCV and MediaPipe.",
+        "Created 'MIA' (Voice Assistant) and 'AURA' (System Automation).",
+        "Exploring Large Language Model integration for local environments."
       ]
     }
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.5
-      }
-    }
+  const handleDownload = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsDownloading(true);
+    // Simulate decryption/download delay
+    setTimeout(() => {
+      setIsDownloading(false);
+      window.open('/resume.pdf', '_blank');
+    }, 2000);
   };
 
   return (
-    <section id="resume" className="py-20 bg-gray-50 dark:bg-[#0a0a0a] relative overflow-hidden">
-      <div className="container mx-auto px-4 relative z-10">
+    <section id="resume" className="py-20 bg-white dark:bg-[#0a0a0a] relative overflow-hidden">
+      <div className="container mx-auto px-4 relative z-10 max-w-[95%] 2xl:max-w-screen-2xl">
+
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="flex flex-col md:flex-row items-end justify-between gap-6 mb-16 border-b border-slate-200 dark:border-white/10 pb-8"
         >
-          <h2 className="text-4xl md:text-5xl font-black mb-4 text-slate-900 dark:text-white tracking-tight">
-            MY <span className="text-[#EC1D24]">JOURNEY</span>
-          </h2>
-          <div className="w-24 h-1 bg-[#EC1D24] mx-auto"></div>
+          <div>
+            <h2 className="text-4xl md:text-6xl font-black text-slate-900 dark:text-white tracking-tighter mb-2">
+              CAREER <span className="text-[#EC1D24]">LOG</span>
+            </h2>
+            <p className="text-slate-600 dark:text-slate-400 font-medium max-w-xl">
+              A chronological record of my academic and professional trajectory.
+            </p>
+          </div>
+
+          <button
+            onClick={handleDownload}
+            disabled={isDownloading}
+            className="group relative px-8 py-3 bg-black dark:bg-white text-white dark:text-black font-bold uppercase tracking-widest text-xs rounded-sm hover:scale-105 transition-transform disabled:opacity-70 disabled:cursor-wait"
+          >
+            <span className={`flex items-center gap-2 relative z-10 ${isDownloading ? 'opacity-0' : 'opacity-100'}`}>
+              Download CV <Download size={16} />
+            </span>
+            {isDownloading && (
+              <div className="absolute inset-0 flex items-center justify-center z-20">
+                <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin"></div>
+              </div>
+            )}
+          </button>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-24">
+
           {/* Education Column */}
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
+          <div>
             <div className="flex items-center gap-3 mb-8">
-              <div className="p-3 bg-[#EC1D24] text-white rounded-lg shadow-lg">
+              <div className="p-2 bg-[#EC1D24]/10 rounded-lg text-[#EC1D24]">
                 <GraduationCap size={24} />
               </div>
-              <h3 className="text-2xl font-bold text-slate-900 dark:text-white">Education</h3>
+              <h3 className="text-2xl font-black text-slate-900 dark:text-white uppercase tracking-tight">Education</h3>
             </div>
 
-            <div className="space-y-8 border-l-2 border-gray-200 dark:border-white/10 ml-4 pl-8 relative">
+            <div className="space-y-12 relative">
+              {/* Vertical Line */}
+              <div className="absolute left-[11px] top-2 bottom-0 w-[2px] bg-slate-200 dark:bg-white/10"></div>
+
               {education.map((item) => (
-                <motion.div key={item.id} variants={itemVariants} className="relative">
-                  <span className="absolute -left-[41px] top-0 w-5 h-5 rounded-full border-4 border-white dark:border-[#0a0a0a] bg-[#EC1D24]"></span>
-                  <div className="card-marvel">
-                    <span className="inline-flex items-center gap-1 text-xs font-bold text-[#EC1D24] mb-2 uppercase tracking-wider">
-                      <Calendar size={12} />
+                <motion.div
+                  key={item.id}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  className="relative pl-10"
+                >
+                  {/* Dot */}
+                  <div className="absolute left-0 top-1.5 w-6 h-6 bg-white dark:bg-[#0a0a0a] border-2 border-slate-300 dark:border-slate-700 rounded-full flex items-center justify-center z-10">
+                    <div className="w-2 h-2 bg-[#EC1D24] rounded-full"></div>
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+                    <h4 className="text-xl font-bold text-slate-900 dark:text-white">{item.degree}</h4>
+                    <span className="text-xs font-bold px-2 py-1 bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400 rounded uppercase tracking-wider whitespace-nowrap">
                       {item.period}
                     </span>
-                    <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-1">{item.degree}</h4>
-                    <p className="text-sm font-medium text-slate-500 dark:text-slate-400 mb-3">{item.institution}</p>
-                    <p className="text-slate-600 dark:text-slate-300 leading-relaxed text-sm">
-                      {item.description}
-                    </p>
                   </div>
+
+                  <p className="text-sm font-bold text-[#EC1D24] mb-3 uppercase tracking-wide">{item.institution}</p>
+                  <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                    {item.description}
+                  </p>
                 </motion.div>
               ))}
             </div>
-          </motion.div>
+          </div>
 
           {/* Experience Column */}
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
+          <div>
             <div className="flex items-center gap-3 mb-8">
-              <div className="p-3 bg-[#EC1D24] text-white rounded-lg shadow-lg">
+              <div className="p-2 bg-[#EC1D24]/10 rounded-lg text-[#EC1D24]">
                 <Briefcase size={24} />
               </div>
-              <h3 className="text-2xl font-bold text-slate-900 dark:text-white">Experience</h3>
+              <h3 className="text-2xl font-black text-slate-900 dark:text-white uppercase tracking-tight">Experience</h3>
             </div>
 
-            <div className="space-y-8 border-l-2 border-gray-200 dark:border-white/10 ml-4 pl-8 relative">
+            <div className="space-y-12 relative">
+              {/* Vertical Line */}
+              <div className="absolute left-[11px] top-2 bottom-0 w-[2px] bg-slate-200 dark:bg-white/10"></div>
+
               {experience.map((item) => (
-                <motion.div key={item.id} variants={itemVariants} className="relative">
-                  <span className="absolute -left-[41px] top-0 w-5 h-5 rounded-full border-4 border-white dark:border-[#0a0a0a] bg-[#EC1D24]"></span>
-                  <div className="card-marvel">
-                    <span className="inline-flex items-center gap-1 text-xs font-bold text-[#EC1D24] mb-2 uppercase tracking-wider">
-                      <Calendar size={12} />
+                <motion.div
+                  key={item.id}
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  className="relative pl-10"
+                >
+                  {/* Dot */}
+                  <div className="absolute left-0 top-1.5 w-6 h-6 bg-white dark:bg-[#0a0a0a] border-2 border-slate-300 dark:border-slate-700 rounded-full flex items-center justify-center z-10">
+                    <div className="w-2 h-2 bg-[#EC1D24] rounded-full"></div>
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+                    <h4 className="text-xl font-bold text-slate-900 dark:text-white">{item.role}</h4>
+                    <span className="text-xs font-bold px-2 py-1 bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-400 rounded uppercase tracking-wider whitespace-nowrap">
                       {item.period}
                     </span>
-                    <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-1">{item.role}</h4>
-                    <p className="text-sm font-medium text-slate-500 dark:text-slate-400 mb-3">{item.company}</p>
-                    {Array.isArray(item.description) ? (
-                      <ul className="space-y-2">
-                        {item.description.map((point, index) => (
-                          <li key={index} className="text-slate-600 dark:text-slate-300 leading-relaxed text-sm flex items-start gap-2">
-                            <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#EC1D24] flex-shrink-0"></span>
-                            <span>{point}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    ) : (
-                      <p className="text-slate-600 dark:text-slate-300 leading-relaxed text-sm">
-                        {item.description}
-                      </p>
-                    )}
                   </div>
+
+                  <p className="text-sm font-bold text-[#EC1D24] mb-4 uppercase tracking-wide">{item.company}</p>
+
+                  <ul className="space-y-2">
+                    {item.description.map((point, index) => (
+                      <li key={index} className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed flex items-start gap-2">
+                        <ChevronRight size={14} className="mt-1 text-slate-400 flex-shrink-0" />
+                        <span>{point}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </motion.div>
               ))}
             </div>
-          </motion.div>
-        </div>
+          </div>
 
-        {/* Download Button */}
-        <motion.div
-          className="flex justify-center mt-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.4 }}
-        >
-          <a
-            href="/resume.pdf"
-            download="Arish_Resume.pdf"
-            className="group flex items-center gap-2 px-5 py-2.5 bg-gray-900 dark:bg-white text-white dark:text-black rounded-lg font-bold text-sm hover:bg-[#EC1D24] dark:hover:bg-[#EC1D24] dark:hover:text-white transition-all shadow-lg"
-          >
-            <Download size={16} className="group-hover:animate-bounce" />
-            Download Resume
-          </a>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

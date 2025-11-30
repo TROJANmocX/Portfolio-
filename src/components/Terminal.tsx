@@ -145,15 +145,17 @@ const Terminal: React.FC = () => {
               <div className="flex space-x-2">
                 <button
                   onClick={toggleMinimize}
-                  className="text-gray-500 hover:text-white transition-colors"
+                  className="text-gray-500 hover:text-white transition-colors p-1 hover:bg-white/10 rounded"
+                  title={isMinimized ? "Restore" : "Minimize"}
                 >
                   {isMinimized ? <Maximize2 size={14} /> : <Minimize2 size={14} />}
                 </button>
                 <button
                   onClick={toggleFullscreen}
-                  className="text-gray-500 hover:text-white transition-colors"
+                  className="text-gray-500 hover:text-white transition-colors p-1 hover:bg-white/10 rounded"
+                  title={isFullscreen ? "Exit Fullscreen" : "Fullscreen"}
                 >
-                  <Maximize2 size={14} />
+                  {isFullscreen ? <Minimize2 size={14} /> : <Maximize2 size={14} />}
                 </button>
               </div>
             </div>

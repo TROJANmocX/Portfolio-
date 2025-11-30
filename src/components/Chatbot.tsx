@@ -176,11 +176,14 @@ const Chatbot: React.FC = () => {
                 value={input}
                 onChange={handleInputChange}
                 placeholder="Type your command..."
-                className="flex-1 p-3 border-2 border-gray-300 dark:border-gray-700 focus:border-[#EC1D24] dark:focus:border-[#EC1D24] focus:outline-none bg-transparent text-slate-900 dark:text-white text-sm font-medium placeholder-slate-400"
+                className="flex-1 p-3 border-2 border-gray-300 dark:border-gray-700 focus:border-[#EC1D24] dark:focus:border-[#EC1D24] focus:outline-none bg-transparent text-slate-900 dark:text-white text-sm font-medium placeholder-slate-400 transition-colors"
               />
               <button
                 type="submit"
-                className="bg-[#EC1D24] text-white p-3 hover:bg-red-700 transition-colors border-2 border-transparent hover:border-black dark:hover:border-white"
+                className={`p-3 transition-all duration-200 border-2 border-transparent ${input.trim() === ''
+                    ? 'bg-gray-300 dark:bg-gray-800 text-gray-500 cursor-not-allowed'
+                    : 'bg-[#EC1D24] text-white hover:bg-red-700 hover:border-black dark:hover:border-white shadow-md hover:shadow-lg transform active:scale-95'
+                  }`}
                 disabled={input.trim() === ''}
               >
                 <Send size={18} />
