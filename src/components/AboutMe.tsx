@@ -79,7 +79,7 @@ const AboutMe: React.FC = () => {
             WHO I AM
           </span>
           <h2 className="text-3xl md:text-4xl font-black mt-1 mb-3 text-black dark:text-white tracking-tighter">
-            ABOUT <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">ME</span>
+            THE <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">ORIGIN</span>
           </h2>
           <p className="text-sm text-slate-700 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed font-medium">
             I'm a Computer Science student with a strong interest in AI, system architecture, and building practical tools that actually solve problems.

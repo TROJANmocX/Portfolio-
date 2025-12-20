@@ -10,12 +10,13 @@ import BackToTop from './components/BackToTop';
 
 import ClickSound from './components/ClickSound';
 import CopyFeedback from './components/CopyFeedback';
+import StoryOverlay from './components/StoryOverlay';
 
 // Lazy load heavy components
 const Projects = React.lazy(() => import('./components/Projects'));
 const Resume = React.lazy(() => import('./components/Resume'));
 const Skills = React.lazy(() => import('./components/Skills'));
-const Testimonials = React.lazy(() => import('./components/Testimonials'));
+
 const Blog = React.lazy(() => import('./components/Blog'));
 const Contact = React.lazy(() => import('./components/Contact'));
 const Footer = React.lazy(() => import('./components/Footer'));
@@ -30,6 +31,7 @@ function App() {
       <BackToTop />
       <ClickSound />
       <CopyFeedback />
+      <StoryOverlay />
 
       {/* Global Background Effects - Cleaned Up */}
       <div className="fixed inset-0 pointer-events-none z-0">
@@ -45,7 +47,6 @@ function App() {
         <Suspense fallback={<SkeletonLoader />}>
           <Skills />
           <Projects />
-          <Testimonials />
           <Blog />
           <Resume />
           <Contact />

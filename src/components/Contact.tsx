@@ -59,7 +59,7 @@ const Contact: React.FC = () => {
             Open for Opportunities
           </div>
           <h2 className="text-4xl md:text-5xl font-black mb-4 text-slate-900 dark:text-white tracking-tighter">
-            GET IN <span className="text-[#EC1D24]">TOUCH</span>
+            THE <span className="text-[#EC1D24]">TRANSMISSION</span>
           </h2>
           <p className="text-slate-600 dark:text-slate-400 max-w-xl mx-auto font-medium text-lg">
             Have a project in mind or just want to say hi? I'm always open to discussing new ideas and opportunities.

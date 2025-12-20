@@ -72,7 +72,7 @@ const Navbar: React.FC = () => {
               offset={-80}
               duration={500}
               activeClass="text-[#EC1D24] bg-red-50/50 dark:bg-red-900/10"
-              className="group relative flex items-center space-x-2 py-1.5 px-3 rounded-full text-slate-600 dark:text-slate-400 hover:text-[#EC1D24] dark:hover:text-[#EC1D24] hover:bg-red-50/30 dark:hover:bg-red-900/5 transition-all duration-300 cursor-pointer text-xs font-bold uppercase tracking-wide hover-wiggle overflow-hidden"
+              className="group relative flex items-center space-x-2 py-1.5 px-3 rounded-full text-slate-600 dark:text-slate-200 hover:text-[#EC1D24] dark:hover:text-[#EC1D24] hover:bg-red-50/30 dark:hover:bg-red-900/5 transition-all duration-300 cursor-pointer text-xs font-bold uppercase tracking-wide hover-wiggle overflow-hidden"
             >
               <motion.span whileHover={{ rotate: 10, scale: 1.2 }}>{item.icon}</motion.span>
               <span>{item.name}</span>
@@ -91,7 +91,7 @@ const Navbar: React.FC = () => {
               offset={-80}
               duration={500}
               activeClass="text-[#EC1D24] bg-red-50/50 dark:bg-red-900/10"
-              className="group relative flex items-center space-x-2 py-1.5 px-3 rounded-full text-slate-600 dark:text-slate-400 hover:text-[#EC1D24] dark:hover:text-[#EC1D24] hover:bg-red-50/30 dark:hover:bg-red-900/5 transition-all duration-300 cursor-pointer text-xs font-bold uppercase tracking-wide hover-wiggle overflow-hidden"
+              className="group relative flex items-center space-x-2 py-1.5 px-3 rounded-full text-slate-600 dark:text-slate-200 hover:text-[#EC1D24] dark:hover:text-[#EC1D24] hover:bg-red-50/30 dark:hover:bg-red-900/5 transition-all duration-300 cursor-pointer text-xs font-bold uppercase tracking-wide hover-wiggle overflow-hidden"
             >
               <motion.span whileHover={{ rotate: 10, scale: 1.2 }}>{item.icon}</motion.span>
               <span>{item.name}</span>
@@ -110,7 +110,7 @@ const Navbar: React.FC = () => {
               offset={-80}
               duration={500}
               activeClass="text-[#EC1D24] bg-red-50/50 dark:bg-red-900/10"
-              className="group relative flex items-center space-x-2 py-1.5 px-3 rounded-full text-slate-600 dark:text-slate-400 hover:text-[#EC1D24] dark:hover:text-[#EC1D24] hover:bg-red-50/30 dark:hover:bg-red-900/5 transition-all duration-300 cursor-pointer text-xs font-bold uppercase tracking-wide hover-wiggle overflow-hidden"
+              className="group relative flex items-center space-x-2 py-1.5 px-3 rounded-full text-slate-600 dark:text-slate-200 hover:text-[#EC1D24] dark:hover:text-[#EC1D24] hover:bg-red-50/30 dark:hover:bg-red-900/5 transition-all duration-300 cursor-pointer text-xs font-bold uppercase tracking-wide hover-wiggle overflow-hidden"
             >
               <motion.span whileHover={{ rotate: 10, scale: 1.2 }}>{item.icon}</motion.span>
               <span>{item.name}</span>

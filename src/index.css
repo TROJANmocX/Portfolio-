@@ -24,13 +24,14 @@
     overflow-x: hidden;
   }
 
-  /* Marvel Comic Background Texture */
+  /* Marvel Comic Background Texture - Refined */
   .dark body {
     background-image:
-      radial-gradient(circle at 50% 50%, rgba(236, 29, 36, 0.03) 0%, transparent 50%),
-      linear-gradient(0deg, transparent 24%, rgba(255, 255, 255, .02) 25%, rgba(255, 255, 255, .02) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, .02) 75%, rgba(255, 255, 255, .02) 76%, transparent 77%, transparent),
-      linear-gradient(90deg, transparent 24%, rgba(255, 255, 255, .02) 25%, rgba(255, 255, 255, .02) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, .02) 75%, rgba(255, 255, 255, .02) 76%, transparent 77%, transparent);
-    background-size: 100% 100%, 50px 50px, 50px 50px;
+      radial-gradient(circle at 50% 50%, rgba(236, 29, 36, 0.05) 0%, transparent 60%),
+      linear-gradient(0deg, transparent 24%, rgba(255, 255, 255, .01) 25%, rgba(255, 255, 255, .01) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, .01) 75%, rgba(255, 255, 255, .01) 76%, transparent 77%, transparent),
+      linear-gradient(90deg, transparent 24%, rgba(255, 255, 255, .01) 25%, rgba(255, 255, 255, .01) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, .01) 75%, rgba(255, 255, 255, .01) 76%, transparent 77%, transparent);
+    background-size: 100% 100%, 60px 60px, 60px 60px;
+    background-color: #050505;
   }
 }
 

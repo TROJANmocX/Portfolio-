@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { Github, ExternalLink, Code, X, ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
+import React, { useState, useMemo } from 'react';
+import { Github, ExternalLink, Code, X, ChevronLeft, ChevronRight, ArrowRight, Filter } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { projects, Project } from '../data/projectsData';
 
 const Projects: React.FC = () => {
   // Filter State
   const [filter, setFilter] = useState<'all' | 'real' | 'fun'>('all');
-  const [hoveredId, setHoveredId] = useState<number | null>(null);
+  const [selectedTech, setSelectedTech] = useState<string | null>(null);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   // Carousel State
@@ -21,12 +21,26 @@ const Projects: React.FC = () => {
     setCurrentIndex((prev) => (prev - 1 + featuredProjects.length) % featuredProjects.length);
   };
 
+  // Extract unique technologies
+  const allTechnologies = useMemo(() => {
+    const techs = new Set<string>();
+    projects.forEach(p => p.technologies.forEach(t => techs.add(t)));
+    return Array.from(techs).sort();
+  }, []);
+
   // Filter Logic
   const filteredProjects = projects.filter(project => {
-    if (filter === 'all') return true;
-    if (filter === 'real') return !project.humor;
-    if (filter === 'fun') return project.humor;
-    return true;
+    const matchesType = filter === 'all'
+      ? true
+      : filter === 'real'
+        ? !project.humor
+        : project.humor;
+
+    const matchesTech = selectedTech
+      ? project.technologies.includes(selectedTech)
+      : true;
+
+    return matchesType && matchesTech;
   });
 
   // Animations
@@ -65,7 +79,7 @@ const Projects: React.FC = () => {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-4xl md:text-6xl font-black mb-4 text-slate-900 dark:text-white tracking-tighter">
-            FEATURED <span className="text-[#EC1D24]">PROJECTS</span>
+            THE <span className="text-[#EC1D24]">CHRONICLES</span>
           </h2>
           <div className="w-24 h-1.5 bg-[#EC1D24] mx-auto mb-6"></div>
           <p className="text-base md:text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto font-medium leading-relaxed">
@@ -98,7 +112,7 @@ const Projects: React.FC = () => {
             </div>
           </div>
 
-          <div className="relative overflow-hidden rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#111] shadow-2xl">
+          <div className="relative overflow-hidden rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#111] shadow-2xl group">
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentIndex}
@@ -109,7 +123,7 @@ const Projects: React.FC = () => {
                 className="grid lg:grid-cols-2 gap-0 min-h-[500px]"
               >
                 {/* Image Side */}
-                <div className="relative h-64 lg:h-auto overflow-hidden group cursor-pointer" onClick={() => setSelectedProject(featuredProjects[currentIndex])}>
+                <div className="relative h-64 lg:h-auto overflow-hidden cursor-pointer" onClick={() => setSelectedProject(featuredProjects[currentIndex])}>
                   <img
                     src={featuredProjects[currentIndex].imageUrl}
                     alt={featuredProjects[currentIndex].title}
@@ -183,25 +197,45 @@ const Projects: React.FC = () => {
 
         {/* --- PROJECT ARCHIVE --- */}
         <div>
-          <div className="flex flex-col md:flex-row items-center justify-between mb-10 gap-6">
+          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between mb-10 gap-6">
             <h3 className="text-2xl font-black text-slate-900 dark:text-white uppercase tracking-tight flex items-center gap-2">
               <span className="w-2 h-8 bg-slate-400 dark:bg-slate-600 rounded-sm"></span>
               Project Archive
             </h3>
 
-            <div className="flex p-1 bg-slate-100 dark:bg-white/5 rounded-lg border border-slate-200 dark:border-white/10">
-              {['all', 'real', 'fun'].map((filterType) => (
-                <button
-                  key={filterType}
-                  onClick={() => setFilter(filterType as 'all' | 'real' | 'fun')}
-                  className={`px-6 py-2 rounded-md text-xs font-bold uppercase tracking-wider transition-all ${filter === filterType
-                    ? 'bg-white dark:bg-[#EC1D24] text-slate-900 dark:text-white shadow-md'
-                    : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-                    }`}
-                >
-                  {filterType}
-                </button>
-              ))}
+            <div className="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
+              {/* Type Filter */}
+              <div className="flex p-1 bg-slate-100 dark:bg-white/5 rounded-lg border border-slate-200 dark:border-white/10 overflow-x-auto">
+                {['all', 'real', 'fun'].map((filterType) => (
+                  <button
+                    key={filterType}
+                    onClick={() => setFilter(filterType as 'all' | 'real' | 'fun')}
+                    className={`px-6 py-2 rounded-md text-xs font-bold uppercase tracking-wider transition-all whitespace-nowrap ${filter === filterType
+                      ? 'bg-white dark:bg-[#EC1D24] text-slate-900 dark:text-white shadow-md'
+                      : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                      }`}
+                  >
+                    {filterType}
+                  </button>
+                ))}
+              </div>
+
+              {/* Tech Filter */}
+              <div className="relative group">
+                <div className="flex items-center gap-2 px-4 py-2 bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-lg cursor-pointer hover:border-[#EC1D24] transition-colors">
+                  <Filter size={16} className="text-slate-500 dark:text-slate-400" />
+                  <select
+                    value={selectedTech || ''}
+                    onChange={(e) => setSelectedTech(e.target.value || null)}
+                    className="bg-transparent border-none outline-none text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 w-32 cursor-pointer appearance-none"
+                  >
+                    <option value="">All Tech</option>
+                    {allTechnologies.map(tech => (
+                      <option key={tech} value={tech}>{tech}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -211,13 +245,12 @@ const Projects: React.FC = () => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, margin: "-50px" }}
+            key={filter}
           >
-            {filteredProjects.map(project => (
+            {filteredProjects.slice(0, 8).map(project => (
               <motion.div
                 key={project.id}
                 variants={item}
-                onHoverStart={() => setHoveredId(project.id)}
-                onHoverEnd={() => setHoveredId(null)}
                 onClick={() => setSelectedProject(project)}
                 whileHover={{ y: -8 }}
                 whileTap={{ scale: 0.98 }}
@@ -266,6 +299,18 @@ const Projects: React.FC = () => {
             ))}
           </motion.div>
 
+          {filteredProjects.length === 0 && (
+            <div className="text-center py-20">
+              <p className="text-slate-500 dark:text-slate-400 font-medium">No projects found matching your filters.</p>
+              <button
+                onClick={() => { setFilter('all'); setSelectedTech(null); }}
+                className="mt-4 text-[#EC1D24] font-bold uppercase text-xs hover:underline"
+              >
+                Clear Filters
+              </button>
+            </div>
+          )}
+
           <motion.div
             className="mt-16 text-center"
             initial={{ opacity: 0, y: 20 }}
@@ -298,10 +343,10 @@ const Projects: React.FC = () => {
             onClick={() => setSelectedProject(null)}
           >
             <motion.div
-              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              initial={{ scale: 0.95, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.9, opacity: 0, y: 20 }}
-              className="bg-white dark:bg-[#111] w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-2xl border border-slate-200 dark:border-white/10 shadow-2xl relative"
+              exit={{ scale: 0.95, opacity: 0, y: 20 }}
+              className="bg-white dark:bg-[#0a0a0a] w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-2xl border border-slate-200 dark:border-white/10 shadow-2xl relative"
               onClick={(e) => e.stopPropagation()}
             >
               <button
@@ -318,69 +363,68 @@ const Projects: React.FC = () => {
                     alt={selectedProject.title}
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60"></div>
-                </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80"></div>
 
-                <div className="p-8 md:p-10 flex flex-col">
-                  <div className="mb-6">
-                    <h3 className="text-3xl md:text-4xl font-black mb-2 text-slate-900 dark:text-white uppercase tracking-tight leading-none">
+                  <div className="absolute bottom-6 left-6 right-6">
+                    <h3 className="text-3xl md:text-4xl font-black text-white uppercase tracking-tight leading-none mb-2">
                       {selectedProject.title}
                     </h3>
                     <div className="w-12 h-1 bg-[#EC1D24] mb-4"></div>
-
-                    <div className="flex flex-wrap gap-2 mb-6">
+                    <div className="flex flex-wrap gap-2">
                       {selectedProject.technologies.map((tech, index) => (
                         <span
                           key={index}
-                          className="text-[10px] font-bold py-1 px-3 bg-[#EC1D24]/5 text-[#EC1D24] border border-[#EC1D24]/20 rounded-full uppercase tracking-wider"
+                          className="text-[10px] font-bold py-1 px-3 bg-white/10 text-white border border-white/20 rounded-full uppercase tracking-wider backdrop-blur-sm"
                         >
                           {tech}
                         </span>
                       ))}
                     </div>
                   </div>
+                </div>
 
-                  <div className="space-y-6 mb-8 flex-grow">
+                <div className="p-8 md:p-10 flex flex-col bg-white dark:bg-[#0a0a0a]">
+                  <div className="space-y-8 flex-grow">
                     <div>
-                      <h4 className="text-xs font-bold text-slate-900 dark:text-white uppercase mb-2 flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 bg-[#EC1D24] rounded-full"></span> Description
+                      <h4 className="text-xs font-bold text-slate-400 uppercase mb-3 flex items-center gap-2 tracking-widest">
+                        <span className="w-1.5 h-1.5 bg-[#EC1D24] rounded-full"></span> Overview
                       </h4>
-                      <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                      <p className="text-slate-700 dark:text-slate-300 text-sm leading-relaxed font-medium">
                         {selectedProject.description}
                       </p>
                     </div>
 
                     {selectedProject.problem && (
-                      <div>
-                        <h4 className="text-xs font-bold text-slate-900 dark:text-white uppercase mb-2 flex items-center gap-2">
-                          <span className="w-1.5 h-1.5 bg-orange-500 rounded-full"></span> The Problem
+                      <div className="bg-red-50 dark:bg-red-900/10 p-5 rounded-xl border border-red-100 dark:border-red-900/20">
+                        <h4 className="text-xs font-bold text-red-600 dark:text-red-400 uppercase mb-2 flex items-center gap-2 tracking-widest">
+                          <span className="w-1.5 h-1.5 bg-red-500 rounded-full"></span> The Challenge
                         </h4>
-                        <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                        <p className="text-slate-700 dark:text-slate-300 text-sm leading-relaxed font-medium">
                           {selectedProject.problem}
                         </p>
                       </div>
                     )}
 
                     {selectedProject.solution && (
-                      <div>
-                        <h4 className="text-xs font-bold text-slate-900 dark:text-white uppercase mb-2 flex items-center gap-2">
+                      <div className="bg-green-50 dark:bg-green-900/10 p-5 rounded-xl border border-green-100 dark:border-green-900/20">
+                        <h4 className="text-xs font-bold text-green-600 dark:text-green-400 uppercase mb-2 flex items-center gap-2 tracking-widest">
                           <span className="w-1.5 h-1.5 bg-green-500 rounded-full"></span> The Solution
                         </h4>
-                        <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                        <p className="text-slate-700 dark:text-slate-300 text-sm leading-relaxed font-medium">
                           {selectedProject.solution}
                         </p>
                       </div>
                     )}
                   </div>
 
-                  <div className="mt-auto flex gap-4 pt-6 border-t border-slate-100 dark:border-white/5">
+                  <div className="mt-8 pt-8 border-t border-slate-100 dark:border-white/5 flex gap-4">
                     <motion.a
                       href={selectedProject.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-black dark:bg-white text-white dark:text-black font-bold uppercase tracking-wider hover:bg-[#EC1D24] dark:hover:bg-[#EC1D24] dark:hover:text-white transition-colors rounded-lg shadow-lg"
+                      className="flex-1 flex items-center justify-center gap-2 px-6 py-4 bg-black dark:bg-white text-white dark:text-black font-black uppercase tracking-wider hover:bg-[#EC1D24] dark:hover:bg-[#EC1D24] dark:hover:text-white transition-all rounded-xl shadow-lg"
                     >
                       <Github size={18} /> View Code
                     </motion.a>
@@ -391,14 +435,14 @@ const Projects: React.FC = () => {
                         rel="noopener noreferrer"
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
-                        className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-white dark:bg-transparent text-black dark:text-white font-bold uppercase tracking-wider border-2 border-black dark:border-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors rounded-lg shadow-lg"
+                        className="flex-1 flex items-center justify-center gap-2 px-6 py-4 bg-white dark:bg-transparent text-black dark:text-white font-black uppercase tracking-wider border-2 border-black dark:border-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all rounded-xl shadow-lg"
                       >
                         <ExternalLink size={18} /> Live Demo
                       </motion.a>
                     ) : (
                       <button
                         disabled
-                        className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-gray-100 dark:bg-gray-800 text-gray-400 font-bold uppercase tracking-wider border-2 border-gray-200 dark:border-gray-700 cursor-not-allowed opacity-50 rounded-lg"
+                        className="flex-1 flex items-center justify-center gap-2 px-6 py-4 bg-gray-100 dark:bg-gray-800 text-gray-400 font-black uppercase tracking-wider border-2 border-gray-200 dark:border-gray-700 cursor-not-allowed opacity-50 rounded-xl"
                       >
                         <ExternalLink size={18} /> No Demo
                       </button>

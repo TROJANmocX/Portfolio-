@@ -14,6 +14,49 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    id: 13,
+    title: 'Quantum Weather App',
+    description: 'A high-fidelity weather and air-quality dashboard that turns real-time data into clear daily decisions. Built with Next.js, AQI intelligence, and a decision-first UI.',
+    technologies: ['Next.js', 'Weather API', 'Dashboard'],
+    imageUrl: 'https://images.unsplash.com/photo-1592210454359-9043f067919b?q=80&w=2070&auto=format&fit=crop',
+    githubUrl: 'https://github.com/TROJANmocX/Quantum-Weather-App',
+    demoUrl: 'https://quantum-weather-app.vercel.app/',
+    featured: true,
+    humor: false
+  },
+  {
+    id: 12,
+    title: 'Useless Website',
+    description: 'A useless website with one job: judge your curiosity and send you somewhere random on the internet. No goals, no productivity, no tracking.',
+    technologies: ['web', 'Randomizer', 'Fun'],
+    imageUrl: 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?q=80&w=2070&auto=format&fit=crop',
+    githubUrl: 'https://github.com/TROJANmocX/Useless-Website-',
+    demoUrl: 'https://useless-website2.vercel.app/',
+    featured: false,
+    humor: true
+  },
+  {
+    id: 11,
+    title: 'ExplainThis.live',
+    description: 'ExplainThis.live turns confusing text into explanations that don’t make you re-read the same sentence five times.',
+    technologies: ['AI', 'Next.js', 'NLP'],
+    imageUrl: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2070&auto=format&fit=crop',
+    githubUrl: 'https://github.com/TROJANmocX/ExplainThis.live',
+    demoUrl: 'https://explainthis.live',
+    featured: true,
+    humor: true
+  },
+  {
+    id: 10,
+    title: 'Music-as-Memory',
+    description: 'Music as Memory is where songs come with stories. Not playlists, not algorithms, just moments. The track you played during exams, heartbreaks, late night walks.',
+    technologies: ['React', 'Spotify API', 'Storytelling'],
+    imageUrl: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=2070&auto=format&fit=crop',
+    githubUrl: 'https://github.com/TROJANmocX/Music-as-Memory',
+    featured: true,
+    humor: false
+  },
+  {
     id: 1,
     title: 'UpSkilled',
     description: 'Your personalized AI mentor to bridge the gap between where you are and where you want to be in tech.',
@@ -61,56 +104,4 @@ export const projects: Project[] = [
     featured: true,
     humor: false
   },
-  {
-    id: 5,
-    title: 'VibeCraft-AI',
-    description: 'Emotion-powered moodboard generator that turns your feelings into visual art, music, quotes, and journal prompts.',
-    problem: 'It\'s hard to visualize or articulate complex emotional states using just words.',
-    solution: 'An AI that translates raw emotions into curated visual and auditory experiences for better self-expression.',
-    technologies: ['React', 'OpenAI', 'Gemini', 'Art'],
-    imageUrl: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?q=80&w=2071&auto=format&fit=crop',
-    githubUrl: 'https://github.com/TROJANmocX/VibeCraft-AI',
-    featured: true,
-    humor: false
-  },
-  {
-    id: 6,
-    title: 'Invoice Digitization Tool',
-    description: 'AI-powered web application that extracts key details from uploaded invoices using OCR and predicts GST rates.',
-    technologies: ['OCR', 'AI', 'Web App', 'FinTech'],
-    imageUrl: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=2026&auto=format&fit=crop',
-    githubUrl: 'https://github.com/TROJANmocX/Invoice-Digitization-and-Tax-Prediction-Tool',
-    featured: false,
-    humor: false
-  },
-  {
-    id: 7,
-    title: 'Wild World',
-    description: 'A 3D animated, eco-themed Animal Awareness website featuring a responsive card carousel showcasing various animals.',
-    technologies: ['3D', 'Web', 'Animation', 'Eco'],
-    imageUrl: 'https://images.unsplash.com/photo-1474511320723-9a56873867b5?q=80&w=2072&auto=format&fit=crop',
-    githubUrl: 'https://github.com/TROJANmocX/Wild-World-',
-    featured: false,
-    humor: false
-  },
-  {
-    id: 8,
-    title: 'AI Career Advisor',
-    description: 'Helps students and professionals discover the best career paths in tech and beyond based on their skills and interests.',
-    technologies: ['AI', 'Career', 'Guidance'],
-    imageUrl: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070&auto=format&fit=crop',
-    githubUrl: 'https://github.com/TROJANmocX/AI-Career-Advisor-',
-    featured: false,
-    humor: false
-  },
-  {
-    id: 9,
-    title: 'AI Hackathon Mentor Bot',
-    description: 'A bot designed to mentor participants during AI hackathons.',
-    technologies: ['Bot', 'AI', 'Mentorship'],
-    imageUrl: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=2070&auto=format&fit=crop',
-    githubUrl: 'https://github.com/TROJANmocX/AI-hackathon-mentor-bot',
-    featured: false,
-    humor: false
-  }
 ];

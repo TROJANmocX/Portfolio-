@@ -32,8 +32,8 @@ const Resume: React.FC = () => {
       period: "2023 – Present",
       status: "ACTIVE",
       description: [
-        "Architecting custom web solutions using the React ecosystem.",
-        "Optimizing performance metrics and ensuring 100% responsive layouts.",
+        "Architecting custom web solutions using the React ecosystem and Next.js.",
+        "Building interactive experiences like 'Music-as-Memory' and 'VibeCraft-AI'.",
         "Deploying full-stack applications with automated CI/CD pipelines."
       ]
     },
@@ -44,8 +44,8 @@ const Resume: React.FC = () => {
       period: "2023 – Present",
       status: "R&D",
       description: [
-        "Developing experimental AI interfaces using OpenCV and MediaPipe.",
-        "Created 'MIA' (Voice Assistant) and 'AURA' (System Automation).",
+        "Developing experimental AI interfaces like 'MedGuardian' and 'ExplainThis.live'.",
+        "Created 'MIA' (Voice Assistant) and 'Quantum Weather App' (Decision Intelligence).",
         "Exploring Large Language Model integration for local environments."
       ]
     }

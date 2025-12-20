@@ -1,6 +1,25 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Globe, Server, Wrench, Brain } from 'lucide-react';
+import {
+  Chart as ChartJS,
+  RadialLinearScale,
+  PointElement,
+  LineElement,
+  Filler,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+import { Radar } from 'react-chartjs-2';
+
+ChartJS.register(
+  RadialLinearScale,
+  PointElement,
+  LineElement,
+  Filler,
+  Tooltip,
+  Legend
+);
 
 // Enhanced Skill bar component with percentage display
 const SkillBar: React.FC<{ skill: string; level: number; color?: string }> = ({ skill, level, color = "#EC1D24" }) => (
@@ -10,7 +29,6 @@ const SkillBar: React.FC<{ skill: string; level: number; color?: string }> = ({ 
         {skill}
       </span>
       <span className="text-slate-500 font-mono text-[10px] font-bold group-hover:text-[#EC1D24] transition-colors duration-300">
-        {level}%
       </span>
     </div>
     <div className="h-1.5 bg-white/10 rounded-full overflow-hidden relative backdrop-blur-sm">
@@ -34,6 +52,53 @@ const SkillBar: React.FC<{ skill: string; level: number; color?: string }> = ({ 
 );
 
 const Skills: React.FC = () => {
+  const radarData = {
+    labels: ['Frontend', 'Backend', 'AI/ML', 'DevOps', 'UI/UX', 'System Design'],
+    datasets: [
+      {
+        label: 'Skill Level',
+        data: [95, 90, 85, 80, 85, 88],
+        backgroundColor: 'rgba(236, 29, 36, 0.2)',
+        borderColor: '#EC1D24',
+        borderWidth: 2,
+        pointBackgroundColor: '#EC1D24',
+        pointBorderColor: '#fff',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: '#EC1D24',
+      },
+    ],
+  };
+
+  const radarOptions = {
+    scales: {
+      r: {
+        angleLines: {
+          color: 'rgba(255, 255, 255, 0.1)',
+        },
+        grid: {
+          color: 'rgba(255, 255, 255, 0.1)',
+        },
+        pointLabels: {
+          color: '#94a3b8',
+          font: {
+            size: 10,
+            family: 'monospace',
+          },
+        },
+        ticks: {
+          display: false,
+          backdropColor: 'transparent',
+        },
+      },
+    },
+    plugins: {
+      legend: {
+        display: false,
+      },
+    },
+    maintainAspectRatio: false,
+  };
+
   return (
     <section id="skills" className="py-16 bg-[#050505] relative overflow-hidden">
       {/* Background Effects */}
@@ -51,7 +116,7 @@ const Skills: React.FC = () => {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-3xl md:text-4xl font-black text-white mb-2 tracking-tighter">
-            TECHNICAL <span className="text-[#EC1D24]">ARSENAL</span>
+            THE <span className="text-[#EC1D24]">ARSENAL</span>
           </h2>
           <p className="text-sm text-slate-400 max-w-2xl mx-auto font-medium">
             Battle-tested technologies powering production-grade systems.
@@ -65,140 +130,159 @@ const Skills: React.FC = () => {
           </div>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
 
-          {/* Card 1: Frontend Architecture */}
-          <motion.div
-            className="relative p-4 rounded-xl bg-gradient-to-br from-black via-[#0a0a0a] to-black border border-[#EC1D24]/30 shadow-[0_0_20px_rgba(236,29,36,0.15)] backdrop-blur-xl group hover:shadow-[0_0_40px_rgba(236,29,36,0.3)] hover:border-[#EC1D24] transition-all duration-500"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            whileHover={{ y: -5 }}
-          >
-            {/* Top glow */}
-            <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#EC1D24] to-transparent opacity-60"></div>
+          {/* Left Column: Skill Cards */}
+          <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Card 1: Frontend Architecture */}
+            <motion.div
+              className="relative p-4 rounded-xl bg-gradient-to-br from-black via-[#0a0a0a] to-black border border-[#EC1D24]/30 shadow-[0_0_20px_rgba(236,29,36,0.15)] backdrop-blur-xl group hover:shadow-[0_0_40px_rgba(236,29,36,0.3)] hover:border-[#EC1D24] transition-all duration-500"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              whileHover={{ y: -5 }}
+            >
+              {/* Top glow */}
+              <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#EC1D24] to-transparent opacity-60"></div>
 
-            {/* Icon container */}
-            <div className="flex items-center gap-2 mb-3">
-              <div className="p-1.5 bg-[#EC1D24]/10 rounded-lg border border-[#EC1D24]/30 group-hover:bg-[#EC1D24]/20 transition-colors">
-                <Globe className="text-[#EC1D24]" size={16} />
-              </div>
-              <h3 className="text-sm font-bold text-white uppercase tracking-tight">Frontend</h3>
-            </div>
-
-            <div className="space-y-1">
-              <SkillBar skill="React / Next.js" level={95} />
-              <SkillBar skill="TypeScript" level={90} />
-              <SkillBar skill="Tailwind CSS" level={98} />
-              <SkillBar skill="Framer Motion" level={92} />
-            </div>
-          </motion.div>
-
-          {/* Card 2: Backend Systems */}
-          <motion.div
-            className="relative p-4 rounded-xl bg-gradient-to-br from-[#0a0a0a] via-black to-[#0a0a0a] border border-white/10 backdrop-blur-xl group hover:border-white/30 transition-all duration-500 overflow-hidden"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            whileHover={{ y: -5 }}
-          >
-            {/* Animated gradient background */}
-            <div className="absolute inset-0 bg-gradient-to-br from-[#EC1D24]/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-
-            <div className="relative z-10">
+              {/* Icon container */}
               <div className="flex items-center gap-2 mb-3">
-                <div className="p-1.5 bg-white/5 rounded-lg border border-white/10 group-hover:bg-white/10 transition-colors">
-                  <Server className="text-white" size={16} />
+                <div className="p-1.5 bg-[#EC1D24]/10 rounded-lg border border-[#EC1D24]/30 group-hover:bg-[#EC1D24]/20 transition-colors">
+                  <Globe className="text-[#EC1D24]" size={16} />
                 </div>
-                <h3 className="text-sm font-bold text-white uppercase tracking-tight">Backend</h3>
+                <h3 className="text-sm font-bold text-white uppercase tracking-tight">Frontend</h3>
               </div>
 
               <div className="space-y-1">
-                <SkillBar skill="Node.js / Express" level={88} color="#fff" />
-                <SkillBar skill="Python / FastAPI" level={85} color="#fff" />
-                <SkillBar skill="PostgreSQL" level={82} color="#fff" />
-                <SkillBar skill="REST / GraphQL" level={90} color="#fff" />
+                <SkillBar skill="React / Next.js" level={95} />
+                <SkillBar skill="TypeScript" level={90} />
+                <SkillBar skill="Tailwind CSS" level={98} />
+                <SkillBar skill="Framer Motion" level={92} />
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
 
-          {/* Card 3: AI & ML */}
-          <motion.div
-            className="relative p-4 rounded-xl bg-gradient-to-br from-black via-[#0a0a0a] to-black border border-purple-500/30 shadow-[0_0_20px_rgba(168,85,247,0.1)] backdrop-blur-xl group hover:shadow-[0_0_40px_rgba(168,85,247,0.2)] hover:border-purple-500/60 transition-all duration-500"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            whileHover={{ y: -5 }}
-          >
-            <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-purple-500 to-transparent opacity-60"></div>
+            {/* Card 2: Backend Systems */}
+            <motion.div
+              className="relative p-4 rounded-xl bg-gradient-to-br from-[#0a0a0a] via-black to-[#0a0a0a] border border-white/10 backdrop-blur-xl group hover:border-white/30 transition-all duration-500 overflow-hidden"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              whileHover={{ y: -5 }}
+            >
+              {/* Animated gradient background */}
+              <div className="absolute inset-0 bg-gradient-to-br from-[#EC1D24]/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-            <div className="flex items-center gap-2 mb-3">
-              <div className="p-1.5 bg-purple-500/10 rounded-lg border border-purple-500/30 group-hover:bg-purple-500/20 transition-colors">
-                <Brain className="text-purple-400" size={16} />
+              <div className="relative z-10">
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="p-1.5 bg-white/5 rounded-lg border border-white/10 group-hover:bg-white/10 transition-colors">
+                    <Server className="text-white" size={16} />
+                  </div>
+                  <h3 className="text-sm font-bold text-white uppercase tracking-tight">Backend</h3>
+                </div>
+
+                <div className="space-y-1">
+                  <SkillBar skill="Node.js / Express" level={88} color="#fff" />
+                  <SkillBar skill="Python / FastAPI" level={85} color="#fff" />
+                  <SkillBar skill="PostgreSQL" level={82} color="#fff" />
+                  <SkillBar skill="REST / GraphQL" level={90} color="#fff" />
+                </div>
               </div>
-              <h3 className="text-sm font-bold text-white uppercase tracking-tight">AI & ML</h3>
-            </div>
+            </motion.div>
 
-            <div className="space-y-1">
-              <SkillBar skill="OpenCV" level={88} color="#a855f7" />
-              <SkillBar skill="MediaPipe" level={85} color="#a855f7" />
-              <SkillBar skill="TensorFlow" level={75} color="#a855f7" />
-              <SkillBar skill="LangChain" level={80} color="#a855f7" />
-            </div>
-          </motion.div>
+            {/* Card 3: AI & ML */}
+            <motion.div
+              className="relative p-4 rounded-xl bg-gradient-to-br from-black via-[#0a0a0a] to-black border border-purple-500/30 shadow-[0_0_20px_rgba(168,85,247,0.1)] backdrop-blur-xl group hover:shadow-[0_0_40px_rgba(168,85,247,0.2)] hover:border-purple-500/60 transition-all duration-500"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              whileHover={{ y: -5 }}
+            >
+              <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-purple-500 to-transparent opacity-60"></div>
 
-          {/* Card 4: DevOps & Tools */}
-          <motion.div
-            className="relative p-4 rounded-xl bg-gradient-to-br from-[#111] via-[#0a0a0a] to-[#111] border border-slate-700/50 backdrop-blur-xl group hover:border-slate-500 transition-all duration-500"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            whileHover={{ y: -5 }}
-          >
-            <div className="flex items-center gap-2 mb-3">
-              <div className="p-1.5 bg-slate-700/20 rounded-lg border border-slate-700/50 group-hover:bg-slate-700/30 transition-colors">
-                <Wrench className="text-slate-400 group-hover:text-slate-300 transition-colors" size={16} />
+              <div className="flex items-center gap-2 mb-3">
+                <div className="p-1.5 bg-purple-500/10 rounded-lg border border-purple-500/30 group-hover:bg-purple-500/20 transition-colors">
+                  <Brain className="text-purple-400" size={16} />
+                </div>
+                <h3 className="text-sm font-bold text-white uppercase tracking-tight">AI & ML</h3>
               </div>
-              <h3 className="text-sm font-bold text-slate-200 uppercase tracking-tight">DevOps</h3>
-            </div>
 
-            <div className="space-y-1">
-              <SkillBar skill="Docker" level={85} color="#94a3b8" />
-              <SkillBar skill="Git / GitHub" level={95} color="#94a3b8" />
-              <SkillBar skill="Linux / Bash" level={88} color="#94a3b8" />
-              <SkillBar skill="Vercel / Railway" level={90} color="#94a3b8" />
-            </div>
-          </motion.div>
+              <div className="space-y-1">
+                <SkillBar skill="OpenCV" level={88} color="#a855f7" />
+                <SkillBar skill="MediaPipe" level={85} color="#a855f7" />
+                <SkillBar skill="TensorFlow" level={75} color="#a855f7" />
+                <SkillBar skill="LangChain" level={80} color="#a855f7" />
+              </div>
+            </motion.div>
+
+            {/* Card 4: DevOps & Tools */}
+            <motion.div
+              className="relative p-4 rounded-xl bg-gradient-to-br from-[#111] via-[#0a0a0a] to-[#111] border border-slate-700/50 backdrop-blur-xl group hover:border-slate-500 transition-all duration-500"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              whileHover={{ y: -5 }}
+            >
+              <div className="flex items-center gap-2 mb-3">
+                <div className="p-1.5 bg-slate-700/20 rounded-lg border border-slate-700/50 group-hover:bg-slate-700/30 transition-colors">
+                  <Wrench className="text-slate-400 group-hover:text-slate-300 transition-colors" size={16} />
+                </div>
+                <h3 className="text-sm font-bold text-slate-200 uppercase tracking-tight">DevOps</h3>
+              </div>
+
+              <div className="space-y-1">
+                <SkillBar skill="Docker" level={85} color="#94a3b8" />
+                <SkillBar skill="Git / GitHub" level={95} color="#94a3b8" />
+                <SkillBar skill="Linux / Bash" level={88} color="#94a3b8" />
+                <SkillBar skill="Vercel / Railway" level={90} color="#94a3b8" />
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Right Column: Radar Chart & Tags */}
+          <div className="flex flex-col gap-4">
+            {/* Radar Chart */}
+            <motion.div
+              className="flex-1 bg-white/5 border border-white/10 rounded-xl p-4 flex flex-col items-center justify-center relative overflow-hidden"
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-b from-[#EC1D24]/5 to-transparent pointer-events-none"></div>
+              <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4 z-10">Skill Distribution</h3>
+              <div className="w-full h-[250px] relative z-10">
+                <Radar data={radarData} options={radarOptions} />
+              </div>
+            </motion.div>
+
+            {/* Additional Tech Stack Tags */}
+            <motion.div
+              className="bg-white/5 border border-white/10 rounded-xl p-6 backdrop-blur-sm"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+            >
+              <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4 text-center">Expanded Tech Ecosystem</h3>
+              <div className="flex flex-wrap justify-center gap-2">
+                {['Redux', 'Zustand', 'Vite', 'Webpack', 'Prisma', 'MongoDB', 'Firebase', 'Stripe', 'WebSockets', 'Chart.js', 'Three.js', 'Figma', 'Postman', 'Jest'].map((tech) => (
+                  <motion.span
+                    key={tech}
+                    whileHover={{ scale: 1.1, backgroundColor: 'rgba(236, 29, 36, 0.2)', borderColor: '#EC1D24' }}
+                    className="px-3 py-1.5 bg-black/40 border border-white/5 rounded-lg text-slate-300 text-xs font-mono hover:text-white transition-all cursor-default select-none"
+                  >
+                    {tech}
+                  </motion.span>
+                ))}
+              </div>
+            </motion.div>
+          </div>
 
         </div>
-
-        {/* Additional Tech Stack Tags */}
-        {/* Additional Tech Stack - Grouped into a Card */}
-        <motion.div
-          className="mt-8 max-w-7xl mx-auto"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-        >
-          <div className="p-6 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm">
-            <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4 text-center">Expanded Tech Ecosystem</h3>
-            <div className="flex flex-wrap justify-center gap-2">
-              {['Redux', 'Zustand', 'Vite', 'Webpack', 'Prisma', 'MongoDB', 'Firebase', 'Stripe', 'WebSockets', 'Chart.js', 'Three.js', 'Figma', 'Postman', 'Jest'].map((tech, index) => (
-                <span
-                  key={tech}
-                  className="px-3 py-1.5 bg-black/40 border border-white/5 rounded-lg text-slate-300 text-xs font-mono hover:border-[#EC1D24]/30 hover:text-white transition-colors cursor-default"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </div>
-        </motion.div>
       </div>
     </section>
   );

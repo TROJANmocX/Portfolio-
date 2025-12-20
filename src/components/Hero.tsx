@@ -1,11 +1,46 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Github, Linkedin, ChevronDown, ArrowRight, Code, Terminal, Instagram, Mail } from 'lucide-react';
 import { Link } from 'react-scroll';
 import { Typewriter } from 'react-simple-typewriter';
-import { motion } from 'framer-motion';
+import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
 import HeroBackground from './HeroBackground';
 
 const Hero: React.FC = () => {
+  const ref = useRef<HTMLDivElement>(null);
+
+  // 3D Tilt Logic
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const mouseXSpring = useSpring(x);
+  const mouseYSpring = useSpring(y);
+
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["15deg", "-15deg"]);
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-15deg", "15deg"]);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!ref.current) return;
+
+    const rect = ref.current.getBoundingClientRect();
+
+    const width = rect.width;
+    const height = rect.height;
+
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+
+    const xPct = mouseX / width - 0.5;
+    const yPct = mouseY / height - 0.5;
+
+    x.set(xPct);
+    y.set(yPct);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
+
   return (
     <section id="home" className="min-h-screen flex items-center relative overflow-hidden pt-20 bg-[#F7F7F7] dark:bg-[#0a0a0a]">
       <HeroBackground />
@@ -25,10 +60,15 @@ const Hero: React.FC = () => {
               <span className="text-[10px] font-bold uppercase tracking-widest text-slate-600 dark:text-slate-300">Available for hire</span>
             </div>
 
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black mb-4 tracking-tighter text-[#1C1C1C] dark:text-white leading-[0.9] relative z-10">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black mb-4 tracking-tighter text-[#1C1C1C] dark:text-white leading-[0.9] relative z-10 group">
               I BUILD <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EC1D24] via-orange-500 to-[#EC1D24] bg-[length:200%_auto] animate-gradient">
-                CHAOS
+              <span className="relative inline-block">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EC1D24] via-orange-500 to-[#EC1D24] bg-[length:200%_auto] animate-gradient relative z-10">
+                  CHAOS
+                </span>
+                {/* Glitch Effect Layers */}
+                <span className="absolute top-0 left-0 -z-10 w-full h-full text-[#EC1D24] opacity-0 group-hover:opacity-70 group-hover:animate-glitch-1">CHAOS</span>
+                <span className="absolute top-0 left-0 -z-10 w-full h-full text-blue-500 opacity-0 group-hover:opacity-70 group-hover:animate-glitch-2">CHAOS</span>
               </span>
             </h1>
 
@@ -73,7 +113,7 @@ const Hero: React.FC = () => {
                   { icon: <Github size={20} />, url: "https://github.com/TROJANmocX" },
                   { icon: <Linkedin size={20} />, url: "https://www.linkedin.com/in/arish-ali-8670341b3/" },
                   { icon: <Instagram size={20} />, url: "https://www.instagram.com/trojan_mocx?igsh=MXdicDZkNGZudmQ4bQ==" },
-                  { icon: <Mail size={20} />, url: "mailto:contact@example.com" } // Replace with actual email if available
+                  { icon: <Mail size={20} />, url: "mailto:contact@example.com" }
                 ].map((social, index) => (
                   <motion.a
                     key={index}
@@ -91,21 +131,35 @@ const Hero: React.FC = () => {
             </div>
           </motion.div>
 
-          {/* Visual Content */}
+          {/* Visual Content with 3D Tilt */}
           <motion.div
-            className="w-full lg:w-1/2 flex justify-center lg:justify-end relative"
+            className="w-full lg:w-1/2 flex justify-center lg:justify-end relative perspective-1000"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2, type: "spring" }}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            ref={ref}
+            style={{
+              perspective: 1000
+            }}
           >
-            <div className="relative w-[300px] h-[300px] md:w-[400px] md:h-[400px]">
+            <motion.div
+              className="relative w-[300px] h-[300px] md:w-[400px] md:h-[400px]"
+              style={{
+                rotateX,
+                rotateY,
+                transformStyle: "preserve-3d"
+              }}
+            >
               {/* Abstract Background Elements */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-[#EC1D24]/20 to-transparent rounded-full blur-3xl animate-pulse"></div>
+              <div className="absolute inset-0 bg-gradient-to-tr from-[#EC1D24]/20 to-transparent rounded-full blur-3xl animate-pulse -z-10" style={{ transform: "translateZ(-50px)" }}></div>
 
               <motion.div
                 className="absolute inset-4 border border-slate-200 dark:border-slate-800 rounded-full"
                 animate={{ rotate: 360 }}
                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                style={{ transform: "translateZ(20px)" }}
               >
                 <div className="absolute -top-1 left-1/2 w-2 h-2 bg-slate-300 dark:bg-slate-700 rounded-full"></div>
                 <div className="absolute -bottom-1 left-1/2 w-2 h-2 bg-slate-300 dark:bg-slate-700 rounded-full"></div>
@@ -115,10 +169,14 @@ const Hero: React.FC = () => {
                 className="absolute inset-12 border border-dashed border-slate-300 dark:border-slate-700 rounded-full"
                 animate={{ rotate: -360 }}
                 transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+                style={{ transform: "translateZ(40px)" }}
               />
 
               {/* Main Image Container */}
-              <div className="absolute inset-8 rounded-full overflow-hidden border-4 border-white dark:border-[#111] shadow-2xl shadow-red-500/20 bg-slate-100 dark:bg-[#111]">
+              <div
+                className="absolute inset-8 rounded-full overflow-hidden border-4 border-white dark:border-[#111] shadow-2xl shadow-red-500/20 bg-slate-100 dark:bg-[#111]"
+                style={{ transform: "translateZ(60px)" }}
+              >
                 <img
                   src="/arish-new.png"
                   alt="Arish"
@@ -131,6 +189,7 @@ const Hero: React.FC = () => {
                 className="absolute top-0 right-10 bg-white dark:bg-[#111] p-3 rounded-xl shadow-xl border border-slate-100 dark:border-white/10 flex items-center gap-2"
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                style={{ transform: "translateZ(80px)" }}
               >
                 <div className="p-1.5 bg-blue-500/10 rounded-lg text-blue-500">
                   <Code size={20} />
@@ -145,6 +204,7 @@ const Hero: React.FC = () => {
                 className="absolute bottom-10 left-0 bg-white dark:bg-[#111] p-3 rounded-xl shadow-xl border border-slate-100 dark:border-white/10 flex items-center gap-2"
                 animate={{ y: [0, 10, 0] }}
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                style={{ transform: "translateZ(100px)" }}
               >
                 <div className="p-1.5 bg-green-500/10 rounded-lg text-green-500">
                   <Terminal size={20} />
@@ -155,7 +215,7 @@ const Hero: React.FC = () => {
                 </div>
               </motion.div>
 
-            </div>
+            </motion.div>
           </motion.div>
         </div>
 
