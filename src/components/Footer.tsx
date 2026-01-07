@@ -54,6 +54,9 @@ const Footer: React.FC = () => {
           <p className="text-gray-500 text-sm font-mono">
             © {currentYear} Arish. All rights reserved.
           </p>
+          <p className="text-slate-600 dark:text-slate-400 text-xs font-bold uppercase tracking-wider mt-2">
+            Built with curiosity, caffeine, and questionable ideas.
+          </p>
           <p className="text-gray-500 text-xs font-mono flex items-center justify-center mt-2">
             Made with <Heart size={12} className="mx-1 text-[#EC1D24] fill-[#EC1D24]" /> using React & Tailwind CSS
           </p>
