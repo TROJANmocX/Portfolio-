@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowUpRight, Calendar, Tag, Loader2, AlertCircle } from 'lucide-react';
+import { ArrowUpRight, Calendar, Tag, AlertCircle } from 'lucide-react';
+import ScrollPeelReveal from './ScrollPeelReveal';
+import SpotlightCard from './SpotlightCard';
 
 interface BlogPost {
     id: number;
@@ -47,9 +49,10 @@ const Blog: React.FC = () => {
     };
 
     return (
-        <section id="blog" className="py-20 bg-white dark:bg-[#0a0a0a] relative overflow-hidden">
-            <div className="container mx-auto px-4 relative z-10">
-                <motion.div
+        <section id="blog" className="py-32 bg-white dark:bg-[#0a0a0a] relative overflow-hidden">
+            <ScrollPeelReveal>
+                <div className="container mx-auto px-4 relative z-10 max-w-[95%] 2xl:max-w-screen-2xl">
+                    <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -74,8 +77,22 @@ const Blog: React.FC = () => {
                 </motion.div>
 
                 {loading ? (
-                    <div className="flex justify-center items-center h-64">
-                        <Loader2 className="animate-spin text-[#EC1D24]" size={48} />
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {[...Array(4)].map((_, i) => (
+                            <div key={i} className="bg-slate-50 dark:bg-[#111] border border-slate-200 dark:border-white/10 rounded-xl overflow-hidden flex flex-col animate-pulse">
+                                <div className="h-32 bg-slate-200 dark:bg-white/5" />
+                                <div className="p-6 flex flex-col gap-3 flex-grow">
+                                    <div className="h-3 w-1/2 bg-slate-200 dark:bg-white/5 rounded" />
+                                    <div className="h-5 w-3/4 bg-slate-200 dark:bg-white/5 rounded" />
+                                    <div className="h-3 w-full bg-slate-200 dark:bg-white/5 rounded" />
+                                    <div className="h-3 w-5/6 bg-slate-200 dark:bg-white/5 rounded" />
+                                    <div className="mt-auto pt-4 border-t border-slate-200 dark:border-white/5 flex justify-between">
+                                        <div className="h-3 w-16 bg-slate-200 dark:bg-white/5 rounded" />
+                                        <div className="h-3 w-12 bg-slate-200 dark:bg-white/5 rounded" />
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 ) : error ? (
                     <div className="flex flex-col justify-center items-center h-64 text-slate-500 dark:text-slate-400">
@@ -96,7 +113,7 @@ const Blog: React.FC = () => {
                                 transition={{ delay: index * 0.1 }}
                                 className="group block h-full"
                             >
-                                <div className="bg-slate-50 dark:bg-[#111] border border-slate-200 dark:border-white/10 rounded-xl overflow-hidden h-full hover:border-[#EC1D24]/50 transition-all duration-300 flex flex-col hover:shadow-lg hover:shadow-red-500/10">
+                                <SpotlightCard className="bg-slate-50 dark:bg-[#111] border border-slate-200 dark:border-white/10 rounded-xl overflow-hidden h-full hover:border-[#EC1D24]/50 transition-all duration-300 flex flex-col hover:shadow-lg hover:shadow-red-500/10">
                                     {post.cover_image && (
                                         <div className="h-32 overflow-hidden relative">
                                             <img
@@ -137,12 +154,13 @@ const Blog: React.FC = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </SpotlightCard>
                             </motion.a>
                         ))}
                     </div>
                 )}
-            </div>
+                </div>
+            </ScrollPeelReveal>
         </section>
     );
 };

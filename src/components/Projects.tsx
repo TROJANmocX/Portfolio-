@@ -2,6 +2,9 @@ import React, { useState, useMemo } from 'react';
 import { Github, ExternalLink, Code, X, ChevronLeft, ChevronRight, ArrowRight, Filter } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { projects, Project } from '../data/projectsData';
+import HackerText from './HackerText';
+import SpotlightCard from './SpotlightCard';
+import ScrollPeelReveal from './ScrollPeelReveal';
 
 const Projects: React.FC = () => {
   // Filter State
@@ -79,7 +82,7 @@ const Projects: React.FC = () => {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-5xl md:text-7xl font-black mb-6 text-slate-900 dark:text-white tracking-tighter">
-            THE <span className="text-[#EC1D24]">CHRONICLES</span>
+            THE <HackerText text="CHRONICLES" className="text-[#EC1D24] cursor-default" />
           </h2>
           <div className="w-24 h-1.5 bg-[#EC1D24] mx-auto mb-8"></div>
           <p className="text-lg md:text-xl text-slate-700 dark:text-slate-300 max-w-2xl mx-auto font-medium leading-relaxed">
@@ -258,8 +261,10 @@ const Projects: React.FC = () => {
                 onClick={() => setSelectedProject(project)}
                 whileHover={{ y: -8, scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="group relative bg-white dark:bg-[#111] rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10 shadow-lg hover:shadow-2xl hover:shadow-red-500/20 transition-all duration-300 cursor-pointer flex flex-col h-full"
+                className="group relative h-full rounded-2xl"
               >
+                <ScrollPeelReveal className="h-full">
+                  <SpotlightCard className="h-full bg-white dark:bg-[#111] rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10 shadow-lg hover:shadow-2xl hover:shadow-red-500/20 transition-all duration-300 cursor-pointer flex flex-col">
                 <div className="relative h-56 overflow-hidden">
                   <motion.img
                     src={project.imageUrl}
@@ -299,6 +304,8 @@ const Projects: React.FC = () => {
                     )}
                   </div>
                 </div>
+                </SpotlightCard>
+                </ScrollPeelReveal>
               </motion.div>
             ))}
           </motion.div>

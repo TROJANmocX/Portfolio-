@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-scroll';
 import {
   Home, User, Code, FileText, Activity,
-  Mail, Menu, X, MessageSquare, PenTool
+  Mail, Menu, X, PenTool
 } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 import { motion } from 'framer-motion';
@@ -10,6 +10,8 @@ import { motion } from 'framer-motion';
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
+  const [hoveredSection, setHoveredSection] = useState<string | null>(null);
   const navRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -33,9 +35,8 @@ const Navbar: React.FC = () => {
   ];
 
   const contentItems = [
-    { name: 'Projects', icon: <Code size={16} />, target: 'projects' },
     { name: 'Skills', icon: <Activity size={16} />, target: 'skills' },
-    { name: 'Stories', icon: <MessageSquare size={16} />, target: 'testimonials' },
+    { name: 'Projects', icon: <Code size={16} />, target: 'projects' },
     { name: 'Blog', icon: <PenTool size={16} />, target: 'blog' },
   ];
 
@@ -62,7 +63,10 @@ const Navbar: React.FC = () => {
         `}
       >
         {/* Desktop Nav - Centered */}
-        <div className="hidden lg:flex items-center space-x-1 relative z-10">
+        <div 
+          className="hidden lg:flex items-center space-x-1 relative z-10"
+          onMouseLeave={() => setHoveredSection(null)}
+        >
           {mainNavItems.map((item) => (
             <Link
               key={item.target}
@@ -71,12 +75,19 @@ const Navbar: React.FC = () => {
               smooth={true}
               offset={-80}
               duration={500}
-              activeClass="text-[#EC1D24] bg-red-50/50 dark:bg-red-900/10"
-              className="group relative flex items-center space-x-2 py-1.5 px-3 rounded-full text-slate-600 dark:text-slate-200 hover:text-[#EC1D24] dark:hover:text-[#EC1D24] hover:bg-red-50/30 dark:hover:bg-red-900/5 transition-all duration-300 cursor-pointer text-xs font-bold uppercase tracking-wide hover-wiggle overflow-hidden"
+              onSetActive={() => setActiveSection(item.target)}
+              onMouseEnter={() => setHoveredSection(item.target)}
+              className="group relative flex items-center space-x-2 py-2 px-4 rounded-full text-slate-600 dark:text-slate-200 hover:text-[#EC1D24] dark:hover:text-white transition-colors duration-300 cursor-pointer text-xs font-bold uppercase tracking-wide overflow-visible z-10"
             >
-              <motion.span whileHover={{ rotate: 10, scale: 1.2 }}>{item.icon}</motion.span>
-              <span>{item.name}</span>
-              <span className="absolute bottom-0 left-0 w-full h-[2px] bg-[#EC1D24] transform scale-x-0 group-[.active]:scale-x-100 transition-transform duration-300 origin-left"></span>
+              <motion.span whileHover={{ rotate: 10, scale: 1.2 }} className="relative z-10">{item.icon}</motion.span>
+              <span className="relative z-10">{item.name}</span>
+              {(hoveredSection ?? activeSection) === item.target && (
+                <motion.div
+                  layoutId="navbar-pill-indicator"
+                  className="absolute inset-0 bg-red-100 dark:bg-[#EC1D24] rounded-full -z-10 shadow-sm"
+                  transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                />
+              )}
             </Link>
           ))}
 
@@ -90,12 +101,19 @@ const Navbar: React.FC = () => {
               smooth={true}
               offset={-80}
               duration={500}
-              activeClass="text-[#EC1D24] bg-red-50/50 dark:bg-red-900/10"
-              className="group relative flex items-center space-x-2 py-1.5 px-3 rounded-full text-slate-600 dark:text-slate-200 hover:text-[#EC1D24] dark:hover:text-[#EC1D24] hover:bg-red-50/30 dark:hover:bg-red-900/5 transition-all duration-300 cursor-pointer text-xs font-bold uppercase tracking-wide hover-wiggle overflow-hidden"
+              onSetActive={() => setActiveSection(item.target)}
+              onMouseEnter={() => setHoveredSection(item.target)}
+              className="group relative flex items-center space-x-2 py-2 px-4 rounded-full text-slate-600 dark:text-slate-200 hover:text-[#EC1D24] dark:hover:text-white transition-colors duration-300 cursor-pointer text-xs font-bold uppercase tracking-wide overflow-visible z-10"
             >
-              <motion.span whileHover={{ rotate: 10, scale: 1.2 }}>{item.icon}</motion.span>
-              <span>{item.name}</span>
-              <span className="absolute bottom-0 left-0 w-full h-[2px] bg-[#EC1D24] transform scale-x-0 group-[.active]:scale-x-100 transition-transform duration-300 origin-left"></span>
+              <motion.span whileHover={{ rotate: 10, scale: 1.2 }} className="relative z-10">{item.icon}</motion.span>
+              <span className="relative z-10">{item.name}</span>
+              {(hoveredSection ?? activeSection) === item.target && (
+                <motion.div
+                  layoutId="navbar-pill-indicator"
+                  className="absolute inset-0 bg-red-100 dark:bg-[#EC1D24] rounded-full -z-10 shadow-sm"
+                  transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                />
+              )}
             </Link>
           ))}
 
@@ -109,12 +127,19 @@ const Navbar: React.FC = () => {
               smooth={true}
               offset={-80}
               duration={500}
-              activeClass="text-[#EC1D24] bg-red-50/50 dark:bg-red-900/10"
-              className="group relative flex items-center space-x-2 py-1.5 px-3 rounded-full text-slate-600 dark:text-slate-200 hover:text-[#EC1D24] dark:hover:text-[#EC1D24] hover:bg-red-50/30 dark:hover:bg-red-900/5 transition-all duration-300 cursor-pointer text-xs font-bold uppercase tracking-wide hover-wiggle overflow-hidden"
+              onSetActive={() => setActiveSection(item.target)}
+              onMouseEnter={() => setHoveredSection(item.target)}
+              className="group relative flex items-center space-x-2 py-2 px-4 rounded-full text-slate-600 dark:text-slate-200 hover:text-[#EC1D24] dark:hover:text-white transition-colors duration-300 cursor-pointer text-xs font-bold uppercase tracking-wide overflow-visible z-10"
             >
-              <motion.span whileHover={{ rotate: 10, scale: 1.2 }}>{item.icon}</motion.span>
-              <span>{item.name}</span>
-              <span className="absolute bottom-0 left-0 w-full h-[2px] bg-[#EC1D24] transform scale-x-0 group-[.active]:scale-x-100 transition-transform duration-300 origin-left"></span>
+              <motion.span whileHover={{ rotate: 10, scale: 1.2 }} className="relative z-10">{item.icon}</motion.span>
+              <span className="relative z-10">{item.name}</span>
+              {(hoveredSection ?? activeSection) === item.target && (
+                <motion.div
+                  layoutId="navbar-pill-indicator"
+                  className="absolute inset-0 bg-red-100 dark:bg-[#EC1D24] rounded-full -z-10 shadow-sm"
+                  transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                />
+              )}
             </Link>
           ))}
 

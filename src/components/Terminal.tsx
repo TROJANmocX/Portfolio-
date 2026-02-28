@@ -102,9 +102,9 @@ const Terminal: React.FC = () => {
       case 'contact':
         response = (
           <div>
-            <div>Email: arish@example.com</div>
-            <div>GitHub: github.com/arish</div>
-            <div>LinkedIn: linkedin.com/in/arish</div>
+            <div>Email: arish6016@gmail.com</div>
+            <div>GitHub: github.com/TROJANmocX</div>
+            <div>LinkedIn: linkedin.com/in/arish-ali-8670341b3/</div>
           </div>
         );
         break;

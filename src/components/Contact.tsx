@@ -1,6 +1,14 @@
 import React, { useState, useRef } from 'react';
-import { Mail, MapPin, Phone, Send, Github, Linkedin, Twitter, Code, Terminal, Copy, Check } from 'lucide-react';
+import emailjs from '@emailjs/browser';
+import { Mail, MapPin, Phone, Send, Github, Linkedin, Twitter, Code, Terminal, Copy, Check, AlertCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+
+// ─── EmailJS Config ───────────────────────────────────────────
+// Fill these in from https://dashboard.emailjs.com/admin
+const EMAILJS_SERVICE_ID  = 'service_12zpfst';
+const EMAILJS_TEMPLATE_ID = 'template_spkn4pu';
+const EMAILJS_PUBLIC_KEY  = 'fB0fNopYM1tyrvpEg';
+// ──────────────────────────────────────────────────────────────
 
 const Contact: React.FC = () => {
   const formRef = useRef<HTMLFormElement>(null);
@@ -14,31 +22,28 @@ const Contact: React.FC = () => {
     setTimeout(() => setCopiedEmail(false), 2000);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formRef.current) return;
     setIsSubmitting(true);
+    setSubmitStatus('idle');
 
-    const formData = new FormData(formRef.current);
-    const name = formData.get('user_name') as string;
-    const email = formData.get('user_email') as string;
-    const message = formData.get('message') as string;
-
-    // Construct mailto link
-    const subject = `Portfolio Contact from ${name}`;
-    const body = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
-    const mailtoLink = `mailto:arish6016@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-    // Open mail client
-    window.location.href = mailtoLink;
-
-    // Show success state
-    setTimeout(() => {
+    try {
+      await emailjs.sendForm(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        formRef.current,
+        EMAILJS_PUBLIC_KEY
+      );
       setSubmitStatus('success');
+      formRef.current.reset();
+    } catch (err) {
+      console.error('EmailJS error:', err);
+      setSubmitStatus('error');
+    } finally {
       setIsSubmitting(false);
-      formRef.current?.reset();
       setTimeout(() => setSubmitStatus('idle'), 5000);
-    }, 1000);
+    }
   };
 
   return (
@@ -162,27 +167,27 @@ const Contact: React.FC = () => {
                 Send a Message
               </h3>
               <p className="text-slate-500 text-sm mb-6">
-                This will open your default email client with the message pre-filled.
+                Fill in the form and I'll get back to you as soon as possible.
               </p>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label htmlFor="user_name" className="text-xs font-bold text-slate-500 uppercase tracking-wider ml-1">Name</label>
+                  <label htmlFor="name" className="text-xs font-bold text-slate-500 uppercase tracking-wider ml-1">Name</label>
                   <input
                     type="text"
-                    name="user_name"
-                    id="user_name"
+                    name="name"
+                    id="name"
                     required
                     className="w-full bg-slate-50 dark:bg-black/50 border border-slate-200 dark:border-white/10 rounded-xl px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:border-[#EC1D24] focus:ring-1 focus:ring-[#EC1D24] transition-all placeholder:text-slate-400"
                     placeholder="John Doe"
                   />
                 </div>
                 <div className="space-y-2">
-                  <label htmlFor="user_email" className="text-xs font-bold text-slate-500 uppercase tracking-wider ml-1">Email</label>
+                  <label htmlFor="email" className="text-xs font-bold text-slate-500 uppercase tracking-wider ml-1">Email</label>
                   <input
                     type="email"
-                    name="user_email"
-                    id="user_email"
+                    name="email"
+                    id="email"
                     required
                     className="w-full bg-slate-50 dark:bg-black/50 border border-slate-200 dark:border-white/10 rounded-xl px-4 py-3 text-slate-900 dark:text-white focus:outline-none focus:border-[#EC1D24] focus:ring-1 focus:ring-[#EC1D24] transition-all placeholder:text-slate-400"
                     placeholder="john@example.com"
@@ -206,7 +211,7 @@ const Contact: React.FC = () => {
                 disabled={isSubmitting}
                 className="w-full flex items-center justify-center gap-2 bg-[#EC1D24] hover:bg-[#d71c20] text-white font-bold py-4 px-6 rounded-xl transition-all hover:shadow-lg hover:shadow-red-500/30 disabled:opacity-70 disabled:cursor-not-allowed uppercase tracking-widest text-sm group"
               >
-                {isSubmitting ? 'Opening Email Client...' : 'Launch Message'}
+                {isSubmitting ? 'Sending...' : 'Send Message'}
                 <Send size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
               </button>
 
@@ -221,7 +226,20 @@ const Contact: React.FC = () => {
                     <div className="p-1 bg-green-500 rounded-full text-white">
                       <Check size={12} strokeWidth={3} />
                     </div>
-                    Email client opened! Please hit send.
+                    Message sent! I'll get back to you soon.
+                  </motion.div>
+                )}
+                {submitStatus === 'error' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    className="p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-500/30 text-red-700 dark:text-red-400 rounded-xl flex items-center gap-3 font-bold text-sm"
+                  >
+                    <div className="p-1 bg-red-500 rounded-full text-white">
+                      <AlertCircle size={12} strokeWidth={3} />
+                    </div>
+                    Something went wrong. Please try emailing me directly.
                   </motion.div>
                 )}
               </AnimatePresence>

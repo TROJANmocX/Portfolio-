@@ -4,6 +4,8 @@ import { Link } from 'react-scroll';
 import { Typewriter } from 'react-simple-typewriter';
 import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
 import HeroBackground from './HeroBackground';
+import HackerText from './HackerText';
+import MagneticButton from './MagneticButton';
 
 const Hero: React.FC = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -62,10 +64,8 @@ const Hero: React.FC = () => {
 
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-black mb-4 tracking-tighter text-[#1C1C1C] dark:text-white leading-[0.9] relative z-10 group">
               I BUILD <br />
-              <span className="relative inline-block">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EC1D24] via-orange-500 to-[#EC1D24] bg-[length:200%_auto] animate-gradient relative z-10">
-                  CHAOS
-                </span>
+              <span className="relative inline-block cursor-default">
+                <HackerText text="CHAOS" className="text-transparent bg-clip-text bg-gradient-to-r from-[#EC1D24] via-orange-500 to-[#EC1D24] bg-[length:200%_auto] animate-gradient relative z-10" />
                 {/* Glitch Effect Layers */}
                 <span className="absolute top-0 left-0 -z-10 w-full h-full text-[#EC1D24] opacity-0 group-hover:opacity-70 group-hover:animate-glitch-1">CHAOS</span>
                 <span className="absolute top-0 left-0 -z-10 w-full h-full text-blue-500 opacity-0 group-hover:opacity-70 group-hover:animate-glitch-2">CHAOS</span>
@@ -94,32 +94,35 @@ const Hero: React.FC = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 relative z-10">
-              <Link
-                to="projects"
-                spy={true}
-                smooth={true}
-                offset={-80}
-                duration={500}
-                className="group relative px-8 py-4 bg-[#EC1D24] text-white font-bold uppercase tracking-widest text-xs overflow-hidden rounded-sm shadow-lg shadow-red-500/20 hover:shadow-red-500/40 transition-all"
-              >
-                <div className="absolute inset-0 w-full h-full bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500 skew-x-12"></div>
-                <span className="relative flex items-center gap-2">
-                  View Work <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-                </span>
-              </Link>
+              <MagneticButton>
+                <Link
+                  to="projects"
+                  spy={true}
+                  smooth={true}
+                  offset={-80}
+                  duration={500}
+                  className="group relative px-8 py-4 bg-[#EC1D24] text-white font-bold uppercase tracking-widest text-xs overflow-hidden rounded-sm shadow-lg shadow-red-500/20 hover:shadow-red-500/40 transition-all block"
+                >
+                  <div className="absolute inset-0 w-full h-full bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500 skew-x-12"></div>
+                  <span className="relative flex items-center justify-center gap-2">
+                    View Work <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                  </span>
+                </Link>
+              </MagneticButton>
 
               <div className="flex gap-3">
                 {[
-                  { icon: <Github size={20} />, url: "https://github.com/TROJANmocX" },
-                  { icon: <Linkedin size={20} />, url: "https://www.linkedin.com/in/arish-ali-8670341b3/" },
-                  { icon: <Instagram size={20} />, url: "https://www.instagram.com/trojan_mocx?igsh=MXdicDZkNGZudmQ4bQ==" },
-                  { icon: <Mail size={20} />, url: "mailto:contact@example.com" }
+                  { icon: <Github size={20} />, url: "https://github.com/TROJANmocX", label: "GitHub" },
+                  { icon: <Linkedin size={20} />, url: "https://www.linkedin.com/in/arish-ali-8670341b3/", label: "LinkedIn" },
+                  { icon: <Instagram size={20} />, url: "https://www.instagram.com/trojan_mocx?igsh=MXdicDZkNGZudmQ4bQ==", label: "Instagram" },
+                  { icon: <Mail size={20} />, url: "mailto:arish6016@gmail.com", label: "Email" }
                 ].map((social, index) => (
                   <motion.a
                     key={index}
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label={social.label}
                     className="p-3 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-full text-slate-700 dark:text-slate-300 hover:text-[#EC1D24] dark:hover:text-[#EC1D24] hover:border-[#EC1D24] dark:hover:border-[#EC1D24] transition-all shadow-sm"
                     whileHover={{ scale: 1.1, rotate: 5 }}
                     whileTap={{ scale: 0.9 }}
@@ -179,7 +182,8 @@ const Hero: React.FC = () => {
               >
                 <img
                   src="/arish-new.png"
-                  alt="Arish"
+                  alt="Arish Ali - Full-Stack Engineer"
+                  loading="lazy"
                   className="w-full h-full object-cover scale-110 hover:scale-100 transition-transform duration-700"
                 />
               </div>

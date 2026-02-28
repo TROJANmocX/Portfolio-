@@ -25,13 +25,14 @@ ChartJS.register(
 const SkillBar: React.FC<{ skill: string; level: number; color?: string }> = ({ skill, level, color = "#EC1D24" }) => (
   <div className="mb-3 group">
     <div className="flex justify-between mb-1">
-      <span className="text-slate-300 font-mono text-xs uppercase tracking-wider group-hover:text-white transition-colors duration-300">
+      <span className="text-slate-700 dark:text-slate-300 font-mono text-xs uppercase tracking-wider group-hover:text-black dark:group-hover:text-white transition-colors duration-300">
         {skill}
       </span>
       <span className="text-slate-500 font-mono text-[10px] font-bold group-hover:text-[#EC1D24] transition-colors duration-300">
+        {level}%
       </span>
     </div>
-    <div className="h-1.5 bg-white/10 rounded-full overflow-hidden relative backdrop-blur-sm">
+    <div className="h-1.5 bg-slate-200 dark:bg-white/10 rounded-full overflow-hidden relative backdrop-blur-sm">
       <motion.div
         className="h-full rounded-full relative overflow-hidden"
         style={{ backgroundColor: color }}
@@ -100,9 +101,9 @@ const Skills: React.FC = () => {
   };
 
   return (
-    <section id="skills" className="py-16 bg-[#050505] relative overflow-hidden">
+    <section id="skills" className="py-16 bg-[#F7F7F7] dark:bg-[#050505] relative overflow-hidden">
       {/* Background Effects */}
-      <div className="absolute top-0 left-0 w-full h-full bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none"></div>
+      <div className="absolute top-0 left-0 w-full h-full bg-[url('/noise.svg')] opacity-20 pointer-events-none"></div>
 
       {/* Radial gradient overlay */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#EC1D24]/5 rounded-full blur-[100px] pointer-events-none"></div>
@@ -115,10 +116,10 @@ const Skills: React.FC = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl md:text-4xl font-black text-white mb-2 tracking-tighter">
+          <h2 className="text-3xl md:text-4xl font-black text-slate-900 dark:text-white mb-2 tracking-tighter">
             THE <span className="text-[#EC1D24]">ARSENAL</span>
           </h2>
-          <p className="text-sm text-slate-400 max-w-2xl mx-auto font-medium">
+          <p className="text-sm text-slate-500 dark:text-slate-400 max-w-2xl mx-auto font-medium">
             Battle-tested technologies powering production-grade systems.
           </p>
 
@@ -136,7 +137,7 @@ const Skills: React.FC = () => {
           <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* Card 1: Frontend Architecture */}
             <motion.div
-              className="relative p-4 rounded-xl bg-gradient-to-br from-black via-[#0a0a0a] to-black border border-[#EC1D24]/30 shadow-[0_0_20px_rgba(236,29,36,0.15)] backdrop-blur-xl group hover:shadow-[0_0_40px_rgba(236,29,36,0.3)] hover:border-[#EC1D24] transition-all duration-500"
+              className="relative p-4 rounded-xl bg-gradient-to-br from-white via-slate-50 to-white dark:from-black dark:via-[#0a0a0a] dark:to-black border border-[#EC1D24]/30 shadow-[0_0_20px_rgba(236,29,36,0.05)] dark:shadow-[0_0_20px_rgba(236,29,36,0.15)] backdrop-blur-xl group hover:shadow-[0_0_40px_rgba(236,29,36,0.15)] dark:hover:shadow-[0_0_40px_rgba(236,29,36,0.3)] hover:border-[#EC1D24] transition-all duration-500"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -151,7 +152,7 @@ const Skills: React.FC = () => {
                 <div className="p-1.5 bg-[#EC1D24]/10 rounded-lg border border-[#EC1D24]/30 group-hover:bg-[#EC1D24]/20 transition-colors">
                   <Globe className="text-[#EC1D24]" size={16} />
                 </div>
-                <h3 className="text-sm font-bold text-white uppercase tracking-tight">Frontend</h3>
+                <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-tight">Frontend</h3>
               </div>
 
               <div className="space-y-1">
@@ -164,7 +165,7 @@ const Skills: React.FC = () => {
 
             {/* Card 2: Backend Systems */}
             <motion.div
-              className="relative p-4 rounded-xl bg-gradient-to-br from-[#0a0a0a] via-black to-[#0a0a0a] border border-white/10 backdrop-blur-xl group hover:border-white/30 transition-all duration-500 overflow-hidden"
+              className="relative p-4 rounded-xl bg-gradient-to-br from-slate-50 via-white to-slate-50 dark:from-[#0a0a0a] dark:via-black dark:to-[#0a0a0a] border border-slate-200 dark:border-white/10 shadow-sm dark:shadow-none backdrop-blur-xl group hover:border-[#EC1D24]/50 dark:hover:border-white/30 transition-all duration-500 overflow-hidden"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -172,14 +173,14 @@ const Skills: React.FC = () => {
               whileHover={{ y: -5 }}
             >
               {/* Animated gradient background */}
-              <div className="absolute inset-0 bg-gradient-to-br from-[#EC1D24]/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-[#EC1D24]/5 dark:from-[#EC1D24]/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
               <div className="relative z-10">
                 <div className="flex items-center gap-2 mb-3">
-                  <div className="p-1.5 bg-white/5 rounded-lg border border-white/10 group-hover:bg-white/10 transition-colors">
-                    <Server className="text-white" size={16} />
+                  <div className="p-1.5 bg-slate-100 dark:bg-white/5 rounded-lg border border-slate-200 dark:border-white/10 group-hover:bg-slate-200 dark:group-hover:bg-white/10 transition-colors">
+                    <Server className="text-slate-700 dark:text-white" size={16} />
                   </div>
-                  <h3 className="text-sm font-bold text-white uppercase tracking-tight">Backend</h3>
+                  <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-tight">Backend</h3>
                 </div>
 
                 <div className="space-y-1">
@@ -193,7 +194,7 @@ const Skills: React.FC = () => {
 
             {/* Card 3: AI & ML */}
             <motion.div
-              className="relative p-4 rounded-xl bg-gradient-to-br from-black via-[#0a0a0a] to-black border border-purple-500/30 shadow-[0_0_20px_rgba(168,85,247,0.1)] backdrop-blur-xl group hover:shadow-[0_0_40px_rgba(168,85,247,0.2)] hover:border-purple-500/60 transition-all duration-500"
+              className="relative p-4 rounded-xl bg-gradient-to-br from-white via-slate-50 to-white dark:from-black dark:via-[#0a0a0a] dark:to-black border border-purple-500/30 shadow-[0_0_20px_rgba(168,85,247,0.05)] dark:shadow-[0_0_20px_rgba(168,85,247,0.1)] backdrop-blur-xl group hover:shadow-[0_0_40px_rgba(168,85,247,0.1)] dark:hover:shadow-[0_0_40px_rgba(168,85,247,0.2)] hover:border-purple-500/60 transition-all duration-500"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -204,9 +205,9 @@ const Skills: React.FC = () => {
 
               <div className="flex items-center gap-2 mb-3">
                 <div className="p-1.5 bg-purple-500/10 rounded-lg border border-purple-500/30 group-hover:bg-purple-500/20 transition-colors">
-                  <Brain className="text-purple-400" size={16} />
+                  <Brain className="text-purple-600 dark:text-purple-400" size={16} />
                 </div>
-                <h3 className="text-sm font-bold text-white uppercase tracking-tight">AI & ML</h3>
+                <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-tight">AI & ML</h3>
               </div>
 
               <div className="space-y-1">
@@ -219,7 +220,7 @@ const Skills: React.FC = () => {
 
             {/* Card 4: DevOps & Tools */}
             <motion.div
-              className="relative p-4 rounded-xl bg-gradient-to-br from-[#111] via-[#0a0a0a] to-[#111] border border-slate-700/50 backdrop-blur-xl group hover:border-slate-500 transition-all duration-500"
+              className="relative p-4 rounded-xl bg-gradient-to-br from-slate-50 via-white to-slate-50 dark:from-[#111] dark:via-[#0a0a0a] dark:to-[#111] border border-slate-200 dark:border-slate-700/50 shadow-sm dark:shadow-none backdrop-blur-xl group hover:border-slate-400 dark:hover:border-slate-500 transition-all duration-500"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -227,10 +228,10 @@ const Skills: React.FC = () => {
               whileHover={{ y: -5 }}
             >
               <div className="flex items-center gap-2 mb-3">
-                <div className="p-1.5 bg-slate-700/20 rounded-lg border border-slate-700/50 group-hover:bg-slate-700/30 transition-colors">
-                  <Wrench className="text-slate-400 group-hover:text-slate-300 transition-colors" size={16} />
+                <div className="p-1.5 bg-slate-100 dark:bg-slate-700/20 rounded-lg border border-slate-200 dark:border-slate-700/50 group-hover:bg-slate-200 dark:group-hover:bg-slate-700/30 transition-colors">
+                  <Wrench className="text-slate-600 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-slate-300 transition-colors" size={16} />
                 </div>
-                <h3 className="text-sm font-bold text-slate-200 uppercase tracking-tight">DevOps</h3>
+                <h3 className="text-sm font-bold text-slate-900 dark:text-slate-200 uppercase tracking-tight">DevOps</h3>
               </div>
 
               <div className="space-y-1">
@@ -246,14 +247,14 @@ const Skills: React.FC = () => {
           <div className="flex flex-col gap-4">
             {/* Radar Chart */}
             <motion.div
-              className="flex-1 bg-white/5 border border-white/10 rounded-xl p-4 flex flex-col items-center justify-center relative overflow-hidden"
+              className="flex-1 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl p-4 flex flex-col items-center justify-center relative overflow-hidden shadow-sm dark:shadow-none"
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.5 }}
             >
               <div className="absolute inset-0 bg-gradient-to-b from-[#EC1D24]/5 to-transparent pointer-events-none"></div>
-              <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4 z-10">Skill Distribution</h3>
+              <h3 className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-4 z-10">Skill Distribution</h3>
               <div className="w-full h-[250px] relative z-10">
                 <Radar data={radarData} options={radarOptions} />
               </div>
@@ -261,19 +262,19 @@ const Skills: React.FC = () => {
 
             {/* Additional Tech Stack Tags */}
             <motion.div
-              className="bg-white/5 border border-white/10 rounded-xl p-6 backdrop-blur-sm"
+              className="bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl p-6 backdrop-blur-sm shadow-sm dark:shadow-none"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.6 }}
             >
-              <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4 text-center">Expanded Tech Ecosystem</h3>
+              <h3 className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-4 text-center">Expanded Tech Ecosystem</h3>
               <div className="flex flex-wrap justify-center gap-2">
                 {['Redux', 'Zustand', 'Vite', 'Webpack', 'Prisma', 'MongoDB', 'Firebase', 'Stripe', 'WebSockets', 'Chart.js', 'Three.js', 'Figma', 'Postman', 'Jest'].map((tech) => (
                   <motion.span
                     key={tech}
-                    whileHover={{ scale: 1.1, backgroundColor: 'rgba(236, 29, 36, 0.2)', borderColor: '#EC1D24' }}
-                    className="px-3 py-1.5 bg-black/40 border border-white/5 rounded-lg text-slate-300 text-xs font-mono hover:text-white transition-all cursor-default select-none"
+                    whileHover={{ scale: 1.1, backgroundColor: 'rgba(236, 29, 36, 0.1)', borderColor: '#EC1D24' }}
+                    className="px-3 py-1.5 bg-slate-50 dark:bg-black/40 border border-slate-200 dark:border-white/5 rounded-lg text-slate-700 dark:text-slate-300 text-xs font-mono hover:text-[#EC1D24] dark:hover:text-white transition-all cursor-default select-none"
                   >
                     {tech}
                   </motion.span>

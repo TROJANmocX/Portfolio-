@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Briefcase, GraduationCap, Download, ChevronRight } from 'lucide-react';
 import { motion } from 'framer-motion';
+import ScrollPeelReveal from './ScrollPeelReveal';
 
 const Resume: React.FC = () => {
   const [isDownloading, setIsDownloading] = useState(false);
@@ -8,45 +9,54 @@ const Resume: React.FC = () => {
   const education = [
     {
       id: 1,
-      degree: "B.Tech in Computer Science",
-      institution: "SRM Institute of Science and Technology",
+      degree: "B.Tech, Computer Science & Engineering",
+      institution: "SRM IST",
       period: "2023 – 2027",
       status: "IN PROGRESS",
-      description: "Specializing in Software Engineering, AI, and Distributed Systems. Maintaining a focus on practical application of theory."
+      description: "Computer Science student building real-world AI and full-stack systems. Strong in shipping end-to-end projects and rapid learning."
     },
     {
       id: 2,
-      degree: "Higher Secondary Education",
-      institution: "Escorts World School",
-      period: "2021 – 2023",
+      degree: "Senior Secondary (XII), CBSE Science",
+      institution: "Escorts World School, Kanpur",
+      period: "2021 – 2022",
       status: "COMPLETED",
-      description: "Foundation in Physics, Chemistry, and Mathematics. Graduated with distinction."
+      description: "Completed with 74.50%."
     }
   ];
 
   const experience = [
     {
       id: 1,
-      role: "Freelance Web Developer",
-      company: "Self-Employed",
-      period: "2023 – Present",
+      role: "MIA – Intelligent Desktop Assistant",
+      company: "Project",
+      period: "Jun 2025 – Present",
       status: "ACTIVE",
       description: [
-        "Architecting custom web solutions using the React ecosystem and Next.js.",
-        "Building interactive experiences like 'Music-as-Memory' and 'VibeCraft-AI'.",
-        "Deploying full-stack applications with automated CI/CD pipelines."
+        "Built an AI-powered desktop assistant with gesture + voice vision.",
+        "Created a modular backend for real-time interaction, extensibility, and system-level automation."
       ]
     },
     {
       id: 2,
-      role: "AI & Tooling Developer",
-      company: "Independent Research",
-      period: "2023 – Present",
-      status: "R&D",
+      role: "Useless Website",
+      company: "Project",
+      period: "Nov 2025 – Dec 2025",
+      status: "COMPLETED",
       description: [
-        "Developing experimental AI interfaces like 'MedGuardian' and 'ExplainThis.live'.",
-        "Created 'MIA' (Voice Assistant) and 'Quantum Weather App' (Decision Intelligence).",
-        "Exploring Large Language Model integration for local environments."
+        "Built a deliberately pointless web app that sends users to random corners of the internet.",
+        "Focused on interaction design, deployment, and embracing controlled chaos."
+      ]
+    },
+    {
+      id: 3,
+      role: "Quantum Weather App",
+      company: "Project",
+      period: "Oct 2025 – Nov 2025",
+      status: "COMPLETED",
+      description: [
+        "Built and deployed a creative weather application with a clean, modern UI.",
+        "Focused on frontend polish, deployment workflows, and responsive design."
       ]
     }
   ];
@@ -63,9 +73,10 @@ const Resume: React.FC = () => {
 
   return (
     <section id="resume" className="py-20 bg-white dark:bg-[#0a0a0a] relative overflow-hidden">
-      <div className="container mx-auto px-4 relative z-10 max-w-[95%] 2xl:max-w-screen-2xl">
+      <ScrollPeelReveal>
+        <div className="container mx-auto px-6 md:px-12 py-16 relative z-10 max-w-[95%] 2xl:max-w-screen-2xl bg-slate-50 dark:bg-[#111] rounded-[2.5rem] border border-slate-200 dark:border-white/10 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_60px_-15px_rgba(236,29,36,0.15)]">
 
-        {/* Header */}
+          {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -190,7 +201,8 @@ const Resume: React.FC = () => {
           </div>
 
         </div>
-      </div>
+        </div>
+      </ScrollPeelReveal>
     </section>
   );
 };
