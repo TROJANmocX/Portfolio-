@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-scroll';
 import {
-  Home, User, Code, FileText, Activity,
+  Home, User, Code, Activity,
   Mail, Menu, X, PenTool, Award
 } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
@@ -42,7 +42,6 @@ const Navbar: React.FC = () => {
   ];
 
   const contactItems = [
-    { name: 'Resume', icon: <FileText size={16} />, target: 'resume' },
     { name: 'Contact', icon: <Mail size={16} />, target: 'contact' },
   ];
 

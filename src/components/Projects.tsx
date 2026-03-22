@@ -70,7 +70,7 @@ const Projects: React.FC = () => {
   };
 
   return (
-    <section id="projects" className="py-32 bg-white dark:bg-[#0a0a0a] relative overflow-hidden">
+    <section id="projects" className="py-20 lg:py-24 bg-white dark:bg-[#0a0a0a] relative overflow-hidden">
       <div className="container mx-auto px-4 relative z-10 max-w-[95%] 2xl:max-w-screen-2xl">
 
         {/* --- SECTION HEADER --- */}

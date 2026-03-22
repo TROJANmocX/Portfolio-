@@ -101,7 +101,7 @@ const Skills: React.FC = () => {
   };
 
   return (
-    <section id="skills" className="py-16 bg-[#F7F7F7] dark:bg-[#050505] relative overflow-hidden">
+    <section id="skills" className="py-20 lg:py-24 bg-[#F7F7F7] dark:bg-[#050505] relative overflow-hidden">
       {/* Background Effects */}
       <div className="absolute top-0 left-0 w-full h-full bg-[url('/noise.svg')] opacity-20 pointer-events-none"></div>
 

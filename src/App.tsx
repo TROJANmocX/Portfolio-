@@ -16,11 +16,11 @@ import CursorTrail from './components/CursorTrail';
 import HireMeCTA from './components/HireMeCTA';
 import PageLoader from './components/PageLoader';
 import CosmicBackground from './components/CosmicBackground';
+import DownloadResume from './components/DownloadResume';
 
 // Lazy load heavy components
 const Projects = React.lazy(() => import('./components/Projects'));
 const Certificates = React.lazy(() => import('./components/Certificates'));
-const Resume = React.lazy(() => import('./components/Resume'));
 const Skills = React.lazy(() => import('./components/Skills'));
 
 const Blog = React.lazy(() => import('./components/Blog'));
@@ -72,6 +72,7 @@ function App() {
       <StoryOverlay />
       {isDesktop && <CursorTrail />}
       <HireMeCTA />
+      <DownloadResume />
 
       {/* Global Background Effects */}
       <CosmicBackground />
@@ -95,9 +96,6 @@ function App() {
         </Suspense>
         <Suspense fallback={<SkeletonLoader />}>
           <Blog />
-        </Suspense>
-        <Suspense fallback={<SkeletonLoader />}>
-          <Resume />
         </Suspense>
         <Suspense fallback={<SkeletonLoader />}>
           <Contact />

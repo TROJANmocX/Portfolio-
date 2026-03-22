@@ -49,7 +49,7 @@ const Blog: React.FC = () => {
     };
 
     return (
-        <section id="blog" className="py-32 bg-white dark:bg-[#0a0a0a] relative overflow-hidden">
+        <section id="blog" className="py-20 lg:py-24 bg-white dark:bg-[#0a0a0a] relative overflow-hidden">
             <ScrollPeelReveal>
                 <div className="container mx-auto px-4 relative z-10 max-w-[95%] 2xl:max-w-screen-2xl">
                     <motion.div
