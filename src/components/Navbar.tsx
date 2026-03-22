@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-scroll';
 import {
   Home, User, Code, FileText, Activity,
-  Mail, Menu, X, PenTool
+  Mail, Menu, X, PenTool, Award
 } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 import { motion } from 'framer-motion';
@@ -37,6 +37,7 @@ const Navbar: React.FC = () => {
   const contentItems = [
     { name: 'Skills', icon: <Activity size={16} />, target: 'skills' },
     { name: 'Projects', icon: <Code size={16} />, target: 'projects' },
+    { name: 'Certificates', icon: <Award size={16} />, target: 'certificates' },
     { name: 'Blog', icon: <PenTool size={16} />, target: 'blog' },
   ];
 

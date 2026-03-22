@@ -64,10 +64,17 @@ const Resume: React.FC = () => {
   const handleDownload = (e: React.MouseEvent) => {
     e.preventDefault();
     setIsDownloading(true);
+    // Open the new window immediately so browser popup blockers don't block it
+    const newWindow = window.open('', '_blank');
+    
     // Simulate decryption/download delay
     setTimeout(() => {
       setIsDownloading(false);
-      window.open('/resume.pdf', '_blank');
+      if (newWindow) {
+        newWindow.location.href = '/resume.pdf';
+      } else {
+        window.location.href = '/resume.pdf';
+      }
     }, 2000);
   };
 

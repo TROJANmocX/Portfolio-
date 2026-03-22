@@ -27,7 +27,7 @@ const CosmicBackground: React.FC = () => {
 
       {/* Primary Red Nebula (Top Left) */}
       <motion.div
-        className="absolute top-[-20%] left-[-10%] w-[70vw] h-[70vw] rounded-full mix-blend-screen opacity-30 blur-[120px]"
+        className="absolute top-[-20%] left-[-10%] w-[70vw] h-[70vw] rounded-full mix-blend-screen opacity-30"
         style={{
           background: 'radial-gradient(circle, rgba(236,29,36,0.8) 0%, rgba(200,0,0,0) 70%)',
         }}
@@ -45,7 +45,7 @@ const CosmicBackground: React.FC = () => {
 
       {/* Deep Violet / Navy Nebula (Bottom Right) */}
       <motion.div
-        className="absolute bottom-[-30%] right-[-20%] w-[80vw] h-[80vw] rounded-full mix-blend-screen opacity-20 blur-[150px]"
+        className="absolute bottom-[-30%] right-[-20%] w-[80vw] h-[80vw] rounded-full mix-blend-screen opacity-20"
         style={{
           background: 'radial-gradient(circle, rgba(67,56,202,0.8) 0%, rgba(30,20,100,0) 70%)', // Indigo/Violet
         }}
@@ -64,7 +64,7 @@ const CosmicBackground: React.FC = () => {
 
       {/* Cosmic Orange Accent (Center drifting) */}
       <motion.div
-        className="absolute top-[40%] left-[30%] w-[50vw] h-[50vw] rounded-full mix-blend-screen opacity-15 blur-[100px]"
+        className="absolute top-[40%] left-[30%] w-[50vw] h-[50vw] rounded-full mix-blend-screen opacity-15"
         style={{
           background: 'radial-gradient(circle, rgba(249,115,22,0.6) 0%, rgba(200,80,0,0) 70%)', // Orange
         }}

@@ -19,6 +19,7 @@ import CosmicBackground from './components/CosmicBackground';
 
 // Lazy load heavy components
 const Projects = React.lazy(() => import('./components/Projects'));
+const Certificates = React.lazy(() => import('./components/Certificates'));
 const Resume = React.lazy(() => import('./components/Resume'));
 const Skills = React.lazy(() => import('./components/Skills'));
 
@@ -29,6 +30,18 @@ const Footer = React.lazy(() => import('./components/Footer'));
 
 function App() {
   const [loading, setLoading] = useState(true);
+  const [isDesktop, setIsDesktop] = useState(true);
+
+  // Check if device uses a mouse
+  useEffect(() => {
+    const checkDesktop = () => {
+      setIsDesktop(window.matchMedia('(pointer: fine)').matches);
+    };
+    
+    checkDesktop();
+    window.addEventListener('resize', checkDesktop);
+    return () => window.removeEventListener('resize', checkDesktop);
+  }, []);
 
   // Prevent scrolling while loading
   useEffect(() => {
@@ -51,13 +64,13 @@ function App() {
         transition={{ duration: 0.8, delay: 0.1, ease: 'easeOut' }}
         className="w-full h-full"
       >
-      <CustomCursor />
+      {isDesktop && <CustomCursor />}
       <ScrollProgress />
       <BackToTop />
       <ClickSound />
       <CopyFeedback />
       <StoryOverlay />
-      <CursorTrail />
+      {isDesktop && <CursorTrail />}
       <HireMeCTA />
 
       {/* Global Background Effects */}
@@ -76,6 +89,9 @@ function App() {
         </Suspense>
         <Suspense fallback={<SkeletonLoader />}>
           <Projects />
+        </Suspense>
+        <Suspense fallback={<SkeletonLoader />}>
+          <Certificates />
         </Suspense>
         <Suspense fallback={<SkeletonLoader />}>
           <Blog />

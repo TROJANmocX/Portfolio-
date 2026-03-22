@@ -50,8 +50,8 @@ const CursorTrail: React.FC = () => {
       }
 
       // Cap particles for performance
-      if (particlesRef.current.length > 120) {
-        particlesRef.current = particlesRef.current.slice(-120);
+      if (particlesRef.current.length > 40) {
+        particlesRef.current = particlesRef.current.slice(-40);
       }
     };
     window.addEventListener('mousemove', onMouseMove);
@@ -79,8 +79,8 @@ const CursorTrail: React.FC = () => {
         // Update
         p.x += p.vx;
         p.y += p.vy;
-        p.alpha -= 0.03;
-        p.size *= 0.97;
+        p.alpha -= 0.05; // increased alpha decay for performance
+        p.size *= 0.95; // increased size decay
         p.vy -= 0.02; // slight upward drift
       });
 
