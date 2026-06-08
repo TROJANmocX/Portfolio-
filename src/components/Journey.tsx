@@ -1,68 +1,28 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { GraduationCap, Briefcase, Calendar, MapPin } from 'lucide-react';
+import { Briefcase, Calendar, MapPin } from 'lucide-react';
 
 const Journey: React.FC = () => {
-    const timelineData = [
+    const experiences = [
         {
-            type: 'work',
-            role: 'MIA – Intelligent Desktop Assistant',
-            company: 'Personal Project',
-            period: 'Jun 2025 – Present',
+            role: 'MERN Stack Developer Intern',
+            company: 'Cognevance Technologies Pvt. Ltd.',
+            period: 'Jun 2026 – Jul 2026',
             description: [
-                'Built an AI-powered desktop assistant with gesture and voice vision.',
-                'Created a modular backend for real-time interaction, extensibility, and system-level automation.',
+                'Working on active live projects under senior engineers, contributing to product development using the MERN stack.',
+                'Involved in daily standups, cross-functional collaboration, and deploying software solutions.'
             ],
-            icon: <Briefcase size={20} />,
+            icon: <Briefcase size={24} />,
+            tags: ['MongoDB', 'Express.js', 'React', 'Node.js']
         },
         {
-            type: 'work',
-            role: 'Personal Portfolio Website',
-            company: 'Personal Project',
-            period: 'May 2025 – Present',
-            description: [
-                'Designed and deployed a personal portfolio showcasing projects and skills.',
-            ],
-            icon: <Briefcase size={20} />,
-        },
-        {
-            type: 'work',
-            role: 'Useless Website',
-            company: 'Personal Project',
-            period: 'Nov 2025 – Dec 2025',
-            description: [
-                'Built a deliberately pointless web app that sends users to random corners of the internet.',
-                'Focused on interaction design, deployment, and embracing controlled chaos.',
-            ],
-            icon: <Briefcase size={20} />,
-        },
-        {
-            type: 'work',
-            role: 'Quantum Weather App',
-            company: 'Personal Project',
-            period: 'Oct 2025 – Nov 2025',
-            description: [
-                'Built and deployed a creative weather application with a clean, modern UI.',
-                'Focused on frontend polish, deployment workflows, and responsive design.',
-            ],
-            icon: <Briefcase size={20} />,
-        },
-        {
-            type: 'education',
-            role: 'B.Tech, Computer Science & Engineering',
-            company: 'SRM IST',
-            period: '2023 – 2027',
-            description: 'Building real-world AI and full-stack systems. Strong in shipping end-to-end projects.',
-            icon: <GraduationCap size={20} />,
-        },
-        {
-            type: 'education',
-            role: 'Senior Secondary (XII), CBSE Science',
-            company: 'Escorts World School, Kanpur',
-            period: '2021 – 2022',
-            description: 'Graduated with 74.50%.',
-            icon: <GraduationCap size={20} />,
-        },
+            role: 'Web Development Intern',
+            company: 'Zaalima Development Pvt. Ltd.',
+            period: 'Mar 2026 – May 2026',
+            description: 'Built and refined UI components, participated in agile sprints, code reviews, and contributed to feature development and bug fixes on a shared codebase.',
+            icon: <Briefcase size={24} />,
+            tags: ['React', 'HTML', 'CSS', 'JavaScript', 'Git']
+        }
     ];
 
     return (
@@ -76,79 +36,72 @@ const Journey: React.FC = () => {
                     transition={{ duration: 0.6 }}
                 >
                     <h2 className="text-4xl md:text-5xl font-black text-[#1C1C1C] dark:text-white mb-4 tracking-tighter">
-                        MY <span className="text-[#EC1D24]">JOURNEY</span>
+                        MY <span className="text-[#EC1D24]">EXPERIENCE</span>
                     </h2>
                     <div className="w-24 h-1.5 bg-[#EC1D24] mx-auto mb-6"></div>
                     <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto font-medium">
-                        The path I've taken to build, learn, and evolve.
+                        My professional journey and internships.
                     </p>
                 </motion.div>
 
-                <div className="relative max-w-4xl mx-auto">
-                    {/* Central Line */}
-                    <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-0.5 bg-slate-200 dark:bg-slate-800 md:-translate-x-1/2"></div>
-
-                    <div className="space-y-12">
-                        {timelineData.map((item, index) => (
+                <div className="max-w-5xl mx-auto">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        {experiences.map((item, index) => (
                             <motion.div
                                 key={index}
-                                initial={{ opacity: 0, y: 50 }}
+                                initial={{ opacity: 0, y: 30 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true, margin: "-100px" }}
+                                viewport={{ once: true }}
                                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                                className={`relative flex flex-col md:flex-row gap-8 ${index % 2 === 0 ? 'md:flex-row-reverse' : ''
-                                    }`}
+                                className="bg-white dark:bg-[#111] p-8 rounded-3xl border border-slate-200 dark:border-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:shadow-xl hover:border-[#EC1D24]/30 transition-all duration-300 relative group flex flex-col h-full"
                             >
-                                {/* Timeline Dot */}
-                                <div className="absolute left-[-5px] md:left-1/2 top-0 w-3 h-3 rounded-full bg-[#EC1D24] border-4 border-white dark:border-[#0a0a0a] md:-translate-x-1/2 z-10 shadow-[0_0_0_4px_rgba(236,29,36,0.2)]"></div>
+                                {/* Decorative elements */}
+                                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#EC1D24]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-tr-3xl pointer-events-none"></div>
 
-                                {/* Content Card */}
-                                <div className={`flex-1 ml-6 md:ml-0 ${index % 2 === 0 ? 'md:text-left' : 'md:text-right'}`}>
-                                    <div className={`bg-white dark:bg-[#111] p-6 rounded-2xl border border-slate-200 dark:border-white/10 shadow-lg hover:shadow-xl hover:border-[#EC1D24]/30 transition-all duration-300 relative group ${index % 2 === 0 ? 'md:mr-auto' : 'md:ml-auto'
-                                        }`}>
-                                        {/* Arrow */}
-                                        <div className={`hidden md:block absolute top-6 w-4 h-4 bg-white dark:bg-[#111] border-t border-r border-slate-200 dark:border-white/10 rotate-45 transition-colors duration-300 group-hover:border-[#EC1D24]/30 ${index % 2 === 0
-                                                ? '-right-2 border-l-0 border-b-0'
-                                                : '-left-2 border-t-0 border-r-0 border-b border-l'
-                                            }`}></div>
-
-                                        <div className={`flex items-center gap-3 mb-4 ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}>
-                                            <div className="p-2 bg-[#EC1D24]/10 rounded-lg text-[#EC1D24]">
-                                                {item.icon}
-                                            </div>
-                                            <div>
-                                                <h3 className="text-lg font-bold text-[#1C1C1C] dark:text-white leading-tight">
-                                                    {item.role}
-                                                </h3>
-                                                <div className={`flex items-center gap-2 text-xs font-bold text-slate-500 uppercase tracking-wide ${index % 2 !== 0 ? 'md:justify-end' : ''}`}>
-                                                    <span className="flex items-center gap-1"><MapPin size={12} /> {item.company}</span>
-                                                </div>
-                                            </div>
+                                <div className="flex items-center gap-5 mb-6 relative z-10">
+                                    <div className="p-3.5 bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/10 rounded-2xl text-[#EC1D24] group-hover:bg-[#EC1D24]/10 group-hover:border-[#EC1D24]/20 transition-all duration-300">
+                                        {item.icon}
+                                    </div>
+                                    <div>
+                                        <h3 className="text-xl md:text-2xl font-black text-[#1C1C1C] dark:text-white leading-tight mb-1.5">
+                                            {item.role}
+                                        </h3>
+                                        <div className="flex items-center gap-2 text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wide">
+                                            <span className="flex items-center gap-1.5"><MapPin size={14} className="text-[#EC1D24]/70" /> {item.company}</span>
                                         </div>
-
-                                        <div className={`flex items-center gap-2 text-xs font-bold text-[#EC1D24] uppercase tracking-widest mb-4 ${index % 2 !== 0 ? 'md:justify-end' : ''}`}>
-                                            <Calendar size={12} /> {item.period}
-                                        </div>
-
-                                        {Array.isArray(item.description) ? (
-                                            <ul className={`space-y-2 ${index % 2 !== 0 ? 'md:text-right' : ''}`}>
-                                                {item.description.map((desc, i) => (
-                                                    <li key={i} className={`text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-medium flex gap-2 ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}>
-                                                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#EC1D24] flex-shrink-0"></span>
-                                                        <span>{desc}</span>
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        ) : (
-                                            <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
-                                                {item.description}
-                                            </p>
-                                        )}
                                     </div>
                                 </div>
 
-                                {/* Empty space for the other side */}
-                                <div className="flex-1 hidden md:block"></div>
+                                <div className="flex items-center gap-2 text-sm font-bold text-[#EC1D24] bg-[#EC1D24]/10 w-fit px-3 py-1.5 rounded-lg uppercase tracking-widest mb-6 relative z-10">
+                                    <Calendar size={14} /> {item.period}
+                                </div>
+
+                                <div className="flex-grow mb-8 relative z-10">
+                                    {Array.isArray(item.description) ? (
+                                        <ul className="space-y-3.5">
+                                            {item.description.map((desc, i) => (
+                                                <li key={i} className="text-[15px] text-slate-600 dark:text-slate-300 leading-relaxed font-medium flex gap-3.5">
+                                                    <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#EC1D24] flex-shrink-0 shadow-[0_0_8px_rgba(236,29,36,0.6)]"></span>
+                                                    <span>{desc}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    ) : (
+                                        <p className="text-[15px] text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
+                                            {item.description}
+                                        </p>
+                                    )}
+                                </div>
+
+                                {item.tags && (
+                                    <div className="mt-auto pt-6 border-t border-slate-100 dark:border-white/10 flex flex-wrap gap-2.5 relative z-10">
+                                        {item.tags.map((tag, i) => (
+                                            <span key={i} className="px-3.5 py-1.5 bg-slate-50 dark:bg-white/5 text-slate-700 dark:text-slate-200 text-xs font-bold uppercase tracking-wider rounded-xl border border-slate-200 dark:border-white/10 group-hover:border-slate-300 dark:group-hover:border-white/20 transition-colors duration-300 shadow-sm">
+                                                {tag}
+                                            </span>
+                                        ))}
+                                    </div>
+                                )}
                             </motion.div>
                         ))}
                     </div>

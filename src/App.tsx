@@ -24,6 +24,7 @@ const Certificates = React.lazy(() => import('./components/Certificates'));
 const Skills = React.lazy(() => import('./components/Skills'));
 
 const Blog = React.lazy(() => import('./components/Blog'));
+const Journey = React.lazy(() => import('./components/Journey'));
 const Contact = React.lazy(() => import('./components/Contact'));
 const Footer = React.lazy(() => import('./components/Footer'));
 
@@ -87,6 +88,9 @@ function App() {
         <AboutMe />
         <Suspense fallback={<SkeletonLoader />}>
           <Skills />
+        </Suspense>
+        <Suspense fallback={<SkeletonLoader />}>
+          <Journey />
         </Suspense>
         <Suspense fallback={<SkeletonLoader />}>
           <Projects />
